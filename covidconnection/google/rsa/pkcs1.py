@@ -42,7 +42,7 @@ except Exception:
         'SHA-256': hashlib.sha256,
     }
 
-from covidconnection.rsa import common, transform
+from covidconnection.google.rsa import common, transform
 
 # ASN.1 codes that describe the hash algorithm used.
 HASH_ASN1 = {

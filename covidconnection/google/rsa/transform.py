@@ -22,7 +22,7 @@ From bytes to a number, number to bytes, etc.
 import binascii
 from struct import pack
 
-from covidconnection.rsa import machine_size
+from covidconnection.google.rsa import machine_size
 
 
 def bytes2int(raw_bytes):

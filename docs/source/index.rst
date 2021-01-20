@@ -12,7 +12,6 @@ Welcome to covidconnection's documentation!
    covidconnection
 
 
-
 Indices and tables
 ==================
 

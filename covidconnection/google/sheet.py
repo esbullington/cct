@@ -8,9 +8,9 @@ try:
 except:
     import requests
 
-import covidconnection.ntp
-from covidconnection.loadkey import LoadKey
-from covidconnection.auth import ServiceAccount
+import covidconnection.google.ntp
+from covidconnection.google.loadkey import LoadKey
+from covidconnection.google.auth import ServiceAccount
 
 
 class Spreadsheet:
@@ -19,7 +19,7 @@ class Spreadsheet:
         self._id = ''
         self._range = ''
         self._url_params = 'insertDataOption=INSERT_ROWS&valueInputOption=USER_ENTERED'
-        self._url_template = 'https://sheets.covidconnectionapis.com/v4/spreadsheets/%s/values/%s:append?%s'
+        self._url_template = 'https://sheets.covidconnection.googleapis.com/v4/spreadsheets/%s/values/%s:append?%s'
         sa = ServiceAccount()
         sa.scope([auth.SCOPE_SPREADSHEETS])
         sa.private_rsa_key(keyfile)

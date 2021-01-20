@@ -8,9 +8,9 @@ try:
 except:
     import json
 
-from covidconnection.loadkey import LoadKey
-from covidconnection.auth import ServiceAccount
-from covidconnection import auth
+from covidconnection.google.loadkey import LoadKey
+from covidconnection.google.auth import ServiceAccount
+from covidconnection.google import auth
 
 class Firebase:
 

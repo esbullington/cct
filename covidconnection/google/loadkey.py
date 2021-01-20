@@ -1,5 +1,5 @@
 import os
-from covidconnection.rsa.key import PrivateKey
+from covidconnection.google.rsa.key import PrivateKey
 
 
 # this class holds a private RSA key

@@ -20,9 +20,9 @@ This is the actual core RSA implementation, which is only defined
 mathematically on integers.
 """
 
-import covidconnection.rsa.common
-from covidconnection.rsa._compat import is_integer
-from covidconnection import rsa
+import covidconnection.google.rsa.common
+from covidconnection.google.rsa._compat import is_integer
+from covidconnection.google import rsa
 
 
 def assert_int(var, name):
