@@ -6,6 +6,10 @@ __pycache__/
 # C extensions
 *.so
 
+# ignore releases
+covidconnection-release*
+*.zip
+
 # Distribution / packaging
 .Python
 build/
