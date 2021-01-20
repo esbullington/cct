@@ -15,11 +15,10 @@ except:
 
 from covidconnection.google.rsa import pkcs1
 from covidconnection.google import ntp
-from micropython import const
 
-SCOPE_USERINFO_EMAIL = const("https://www.covidconnection.googleapis.com/auth/userinfo.email")
-SCOPE_FIREBASE_DATABASE = const("https://www.covidconnection.googleapis.com/auth/firebase.database")
-SCOPE_SPREADSHEETS = const("https://www.covidconnection.googleapis.com/auth/spreadsheets")
+SCOPE_USERINFO_EMAIL = "https://www.googleapis.com/auth/userinfo.email"
+SCOPE_FIREBASE_DATABASE = "https://www.googleapis.com/auth/firebase.database"
+SCOPE_SPREADSHEETS = "https://www.googleapis.com/auth/spreadsheets"
 
 
 def encode_dict_to_base64(d):
@@ -33,7 +32,7 @@ def encode_bytes_to_safe_base64(bytes):
 
 # this class builds a JWT to request an access token
 # from the Google OAuth 2.0 Authorization Server using a service account
-# see https://developers.covidconnection.google.com/identity/protocols/OAuth2ServiceAccount
+# see https://developers.google.com/identity/protocols/OAuth2ServiceAccount
 class JWTBuilder:
 
     def __init__(self):
@@ -43,7 +42,7 @@ class JWTBuilder:
         self._claim = {
             'iss': '',
             'scope': '',
-            'aud': 'https://www.covidconnection.googleapis.com/oauth2/v4/token',
+            'aud': 'https://www.googleapis.com/oauth2/v4/token',
             'exp': 0,
             'iat': 0}
         self._key = None
@@ -113,7 +112,7 @@ class ServiceAccount:
         grant_type = 'urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer'
         body = 'grant_type=%s&assertion=%s' % (grant_type, jwt)
         headers = {'Content-Type': 'application/x-www-form-urlencoded'}
-        response = requests.post('https://www.covidconnection.googleapis.com/oauth2/v4/token',
+        response = requests.post('https://www.googleapis.com/oauth2/v4/token',
                                  data=body,
                                  headers=headers)
         if not response:

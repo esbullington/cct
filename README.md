@@ -61,7 +61,13 @@ Run `tools/extract.sh <yourdownloadedjsonkey.json> key.json` on a Linux, Mac, or
 
 Go to the [Firebase database console](https://console.firebase.google.com/u/0/). Click `Add project` button. On the next screen, be sure to select the same project you created while setting up your Service Account. Click on `Realtime database` and note the name of the database in the center of the screen (create one if there is not one there).
 
-### Micropython documentation
+### Documentation
+
+#### Project library documentation
+
+See documentation in docs, and generated documentation at (to be determined).
+
+#### Micropython documentation
 
 - [General documentation](https://docs.micropython.org/en/latest/index.html)
 

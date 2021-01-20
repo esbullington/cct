@@ -1,6 +1,6 @@
 
-VERSION="0.01"
-RELEASE="covidconnection-release-$(VERSION)"
+VERSION=0.01
+RELEASE=covidconnection-release-$(VERSION)
 ZIPFILE=$(RELEASE).zip
 
 # docs
@@ -14,16 +14,21 @@ DOCSBUILDDIR      = docs/build
 .PHONY: gh-pages package clean help Makefile
 
 
-package:
+build:
+	find covidconnection -type d -name  "__pycache__" -exec rm -r {} +
 	mkdir -p $(RELEASE)
-	cp -r example_program/* $(RELEASE)/
-	cp -r covidconnection $(RELEASE)/
+	cp README.md $(RELEASE)
+	cp -r example_program $(RELEASE)/
+	cp -r covidconnection $(RELEASE)/example_program
 	cp -r scripts $(RELEASE)/
+
+package:
+	make build
 	zip -r $(ZIPFILE) $(RELEASE)
-	rm -rf $(RELEASE)
+
 
 clean:
-	rm $(ZIPFILE)
+	rm -f $(ZIPFILE)
 	rm -rf $(RELEASE)
 
 gh-pages:
