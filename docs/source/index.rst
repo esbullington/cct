@@ -8,7 +8,8 @@ Welcome to covidconnection's documentation!
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+
+   covidconnection
 
 
 
