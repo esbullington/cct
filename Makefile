@@ -28,13 +28,13 @@ build:
 	find covidconnection -type d -name  "__pycache__" -exec rm -r {} +
 	mkdir -p $(RELEASE)
 	cp README.md $(RELEASE)
-	cp -r example_program $(RELEASE)/
-	cp -r covidconnection $(RELEASE)/example_program
-	cp -r scripts $(RELEASE)/
+	cp -r board $(RELEASE)/
+	cp -r covidconnection $(RELEASE)/board
+	cp -r tools $(RELEASE)/
 
 package:
-	make build
-	zip -r $(ZIPFILE) $(RELEASE)
+	make build 
+	@zip -r $(ZIPFILE) $(RELEASE) 1> /dev/null
 
 
 clean:

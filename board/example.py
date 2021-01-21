@@ -1,7 +1,7 @@
 from covidconnection.google.ufirebase import Firebase
 from covidconnection.wifi import AccessPoint
 from covidconnection.wifi import Connection
-from config import Config
+from covidconnection.config import Config
 import gc
 import uos
 
@@ -13,7 +13,8 @@ print('garbage collection threshold: ' + str(gc.threshold()))
 # for your Firebase database and wifi network
 config = Config("main.conf")
 
-if "uname" in dir(uos):
+## if we're running on esp32 (not desktop), then start up the wifi
+if usys.platform != "esp32":
     wifi = Connection(config.get('ssid'), config.get('password'))
     wifi.connect()
 
