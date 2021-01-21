@@ -1,6 +1,6 @@
 
 VERSION=0.01
-RELEASE=covidconnection-release-$(VERSION)
+RELEASE=covidconnection-board-$(VERSION)
 ZIPFILE=$(RELEASE).zip
 
 # docs
@@ -12,7 +12,7 @@ DOCSBUILDDIR      = docs/build
 
 
 # esp32
-FIRMWARE = esp32-idf3-20200902-v1.13.bin
+FIRMWARE = esp32-idf3-20210121-unstable-v1.13-274-g49dd9ba1a.bin
 
 
 .PHONY: gh-pages package clean help Makefile write_flash erase_flash
