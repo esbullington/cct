@@ -11,8 +11,18 @@ DOCSSOURCEDIR     = docs/source
 DOCSBUILDDIR      = docs/build
 
 
-.PHONY: gh-pages package clean help Makefile
+# esp32
+FIRMWARE = esp32-idf3-20200902-v1.13.bin
 
+
+.PHONY: gh-pages package clean help Makefile write_flash erase_flash
+
+
+write_flash:
+	esptool.py --chip esp32 --port /dev/ttyUSB0 write_flash -z 0x1000 firmware/$(FIRMWARE)
+
+erase_flash:
+	esptool.py --chip esp32 --port /dev/ttyUSB0 erase_flash
 
 build:
 	find covidconnection -type d -name  "__pycache__" -exec rm -r {} +
@@ -47,5 +57,5 @@ autodoc:
 
 # Catch-all target: route all unknown targets to Sphinx using the new
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
-%: Makefile
-	@$(SPHINXBUILD) -M $@ "$(DOCSSOURCEDIR)" "$(DOCSBUILDDIR)" $(SPHINXOPTS) $(O)
+html:
+	@$(SPHINXBUILD)  -b html "$(DOCSSOURCEDIR)" "$(DOCSBUILDDIR)" $(SPHINXOPTS)
