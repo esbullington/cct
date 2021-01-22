@@ -36,9 +36,6 @@ else:
     MACHINE_WORD_SIZE = 64
 
 integer_types = (int, )
-range = range
-zip = zip
-
 
 def is_integer(obj):
     """

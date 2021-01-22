@@ -1,3 +1,4 @@
+# pylint: disable=W0702
 # -*- coding: utf-8 -*-
 #
 #  Copyright 2011 Sybren A. Stüvel <sybren@stuvel.eu>
@@ -37,6 +38,7 @@ else:
 
 def get_word_alignment(num, force_arch=64,
                        _machine_word_size=MACHINE_WORD_SIZE):
+    # pylint: disable=R1705
     """
     Returns alignment details for the given number based on the platform
     Python is running on.

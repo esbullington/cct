@@ -1,16 +1,16 @@
 try:
     import ubinascii as binascii
-except:
+except ImportError:
     import binascii
 
 try:
     import urequests as requests
-except:
+except ImportError:
     import requests
 
 try:
     import ujson as json
-except:
+except ImportError:
     import json
 
 from covidconnection.google.rsa import pkcs1
@@ -25,8 +25,8 @@ def encode_dict_to_base64(d):
     return encode_bytes_to_safe_base64(json.dumps(d).encode('utf8'))
 
 
-def encode_bytes_to_safe_base64(bytes):
-    encoded = binascii.b2a_base64(bytes).replace(b'+', b'-')
+def encode_bytes_to_safe_base64(b):
+    encoded = binascii.b2a_base64(b).replace(b'+', b'-')
     return encoded.replace(b'/', b'_').strip().decode('utf8')
 
 

@@ -1,5 +1,6 @@
-import network
 import time
+
+import network
 
 
 # the class starts a WiFi access point

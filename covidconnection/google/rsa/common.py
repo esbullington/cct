@@ -22,7 +22,7 @@ from covidconnection.google.rsa._compat import is_integer
 
 class NotRelativePrimeError(ValueError):
     def __init__(self, a, b, d, msg=None):
-        super(NotRelativePrimeError, self).__init__(
+        super().__init__(
             msg or "%d and %d are not relatively prime, divider=%i" % (a, b, d))
         self.a = a
         self.b = b
@@ -72,8 +72,8 @@ def bit_size(num):
 
     try:
         return bit_length(num)
-    except AttributeError:
-        raise TypeError('bit_size(num) only supports integers, not %r' % type(num))
+    except AttributeError as e:
+        raise TypeError('bit_size(num) only supports integers, not %r' % type(num)) from e
 
 
 def byte_size(number):

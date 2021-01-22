@@ -1,11 +1,11 @@
 try:
     import ujson as json
-except:
+except ImportError:
     import json
 
 try:
     import urequests as requests
-except:
+except ImportError:
     import requests
 
 import covidconnection.google.ntp
