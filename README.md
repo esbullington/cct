@@ -46,7 +46,7 @@ rshell -p <serial port here: eg, `COM5`> -b 115200 --editor vim
 
 To be able to removely connect to the Google Sheets API and/or the Google Firebase API, you'll need to create a service account. Follow these directions up until you are able to download the JSON key (you'll use the key to connect to your Google Sheet):
 
-`https://denisluiz.medium.com/python-with-google-sheets-service-account-step-by-step-8f74c26ed28e`
+https://denisluiz.medium.com/python-with-google-sheets-service-account-step-by-step-8f74c26ed28e
 
 No need to use the Python code at the end of that page, since this project uses specialized Micropython code to interact with the spreadsheet.
 
