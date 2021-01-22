@@ -1,6 +1,6 @@
 
 VERSION=0.01
-RELEASE=covidconnection-board-$(VERSION)
+RELEASE=covidconnection-release-$(VERSION)
 ZIPFILE=$(RELEASE).zip
 
 # docs

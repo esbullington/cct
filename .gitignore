@@ -8,6 +8,7 @@ __pycache__/
 
 # ignore releases
 covidconnection-release*
+covidconnection-board*
 *.zip
 
 # Distribution / packaging
