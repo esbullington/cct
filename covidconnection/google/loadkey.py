@@ -1,4 +1,6 @@
-import os
+
+import usys
+
 from covidconnection.google.rsa.key import PrivateKey
 
 
@@ -20,4 +22,5 @@ class LoadKey:
             with open(filename) as f:
                 return PrivateKey.load_pkcs1(f.read())
         except Exception as exc:
-            print("Error opening config file: {}".format(str(exc)))
+            print("Error opening key file: {}".format(str(exc)))
+            usys.exit(1)

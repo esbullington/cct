@@ -1,5 +1,5 @@
-import os
 import ujson
+import usys
 
 
 # this class holds a configuration for the device
@@ -36,3 +36,4 @@ class Config:
                 return ujson.load(f)
         except Exception as exc:
             print("Error opening config file: {}".format(str(exc)))
+            usys.exit(1)
