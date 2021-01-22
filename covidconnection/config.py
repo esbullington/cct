@@ -31,8 +31,8 @@ class Config:
     # loads a configuration from the specified file
     @staticmethod
     def load_config(config_filename):
-        if config_filename not in os.listdir():
-            print('cannot find ' + config_filename)
-            return {}
-        with open(config_filename) as f:
-            return ujson.load(f)
+        try:
+            with open(config_filename) as f:
+                return ujson.load(f)
+        except Exception as exc:
+            print("Error opening config file: {}".format(str(exc)))

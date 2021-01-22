@@ -1,4 +1,3 @@
-# pylint: disable = W0104
 # -*- coding: utf-8 -*-
 #
 #  Copyright 2011 Sybren A. Stüvel <sybren@stuvel.eu>
@@ -42,7 +41,6 @@ def bytes2int(raw_bytes):
 
 
 def bytes_leading(raw_bytes, needle=b'\x00'):
-
     """
     Finds the number of prefixed byte occurrences in the haystack.
 

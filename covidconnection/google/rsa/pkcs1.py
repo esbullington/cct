@@ -30,6 +30,7 @@ to your users.
 
 try:
     import uhashlib
+
     HASH_METHODS = {
         'SHA-1': uhashlib.sha1,
         'SHA-256': uhashlib.sha256,
@@ -128,6 +129,7 @@ def sign_hash(hash_value, priv_key, hash_method):
     print('sign_hash: encrypted')
     block = transform.int2bytes(encrypted, keylength)
     print('sign_hash: int2bytes finished')
+    
     return block
 
 

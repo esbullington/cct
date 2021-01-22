@@ -16,18 +16,18 @@
 
 try:
     import ujson as json
-except ImportError:
+except:
     import json
 
 from covidconnection.google import rsa
+import covidconnection.google.rsa.common
+import covidconnection.google.rsa.core
 
 DEFAULT_EXPONENT = 65537
 
 
-class AbstractKey:
+class AbstractKey(object):
     """Abstract superclass for private and public keys."""
-
-    # pylint: disable=too-few-public-methods
 
     __slots__ = ('n', 'e')
 
@@ -45,7 +45,7 @@ class AbstractKey:
         """
 
     @classmethod
-    def load_pkcs1(cls, keyfile, formatType='JSON'):
+    def load_pkcs1(cls, keyfile, format='JSON'):
         """Loads a key.
         :param keyfile: contents a file that contains the key.
         :type keyfile: bytes
@@ -59,7 +59,7 @@ class AbstractKey:
             'JSON': cls._load_pkcs1_json
         }
 
-        method = cls._assert_format_exists(formatType, methods)
+        method = cls._assert_format_exists(format, methods)
         return method(keyfile)
 
     @staticmethod
@@ -72,13 +72,10 @@ class AbstractKey:
         except KeyError:
             formats = ', '.join(sorted(methods.keys()))
             raise ValueError('Unsupported format: %r, try one of %s' % (file_format,
-                                                                        formats)) from None
+                                                                        formats))
 
 
 class PrivateKey(AbstractKey):
-
-    # pylint: disable=too-many-instance-attributes
-    # pylint: disable=too-many-arguments
 
     __slots__ = ('n', 'e', 'd', 'p', 'q', 'exp1', 'exp2', 'coef')
 
@@ -124,7 +121,7 @@ class PrivateKey(AbstractKey):
                 self.coef == other.coef)
 
     def __ne__(self, other):
-        return not self == other
+        return not (self == other)
 
     def __hash__(self):
         return hash((self.n, self.e, self.d, self.p, self.q, self.exp1, self.exp2, self.coef))

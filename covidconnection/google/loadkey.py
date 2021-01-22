@@ -16,8 +16,8 @@ class LoadKey:
     # loads a private RSA key
     @staticmethod
     def load_key(filename):
-        if filename not in os.listdir():
-            print('cannot find ' + filename)
-            return
-        with open(filename) as f:
-            return PrivateKey.load_pkcs1(f.read())
+        try:
+            with open(filename) as f:
+                return PrivateKey.load_pkcs1(f.read())
+        except Exception as exc:
+            print("Error opening config file: {}".format(str(exc)))

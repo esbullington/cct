@@ -1,11 +1,11 @@
 try:
     import urequests as requests
-except ImportError:
+except:
     import requests
 
 try:
     import ujson as json
-except ImportError:
+except:
     import json
 
 from covidconnection.google.loadkey import LoadKey
