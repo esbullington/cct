@@ -1,5 +1,5 @@
 
-VERSION=0.01
+VERSION=0.1.0
 RELEASE=covidconnection-release-$(VERSION)
 ZIPFILE=$(RELEASE).zip
 
