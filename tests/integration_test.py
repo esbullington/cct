@@ -2,7 +2,8 @@ import uos
 import usys
 import gc
 
-print("Paths: ")
+# show micropython path
+print("Path: ")
 print(usys.path)
 
 from covidconnection.google.ufirebase import Firebase
@@ -14,7 +15,7 @@ print("Starting garbage collection at threshold: " + str(gc.threshold()))
 
 # load the config, make sure you have appropriate settings
 # for your Firebase database and wifi network
-config = Config("main.conf")
+config = Config("tests/main.conf")
 
 ## if we"re running on esp32 (not desktop), then start up the wifi
 if usys.platform == "esp32":

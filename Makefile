@@ -3,6 +3,9 @@ VERSION=0.01
 RELEASE=covidconnection-release-$(VERSION)
 ZIPFILE=$(RELEASE).zip
 
+REPODIR=$(HOME)/repos/covidconnection
+TESTDIR=$(REPODIR)/tests
+
 # docs
 SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
@@ -24,14 +27,22 @@ write_flash:
 erase_flash:
 	esptool.py --chip esp32 --port /dev/ttyUSB0 erase_flash
 
-build:
+prebuild:
 	rm -rf $(RELEASE)
 	find covidconnection -type d -name  "__pycache__" -exec rm -r {} +
 	mkdir -p $(RELEASE)
+	mkdir -p $(RELEASE)/board
 	cp README.md $(RELEASE)
-	cp -r board $(RELEASE)/
-	cp -r covidconnection $(RELEASE)/board
+	cp -r covidconnection $(RELEASE)/board/
 	cp -r tools $(RELEASE)/
+
+build:
+	make prebuild
+	find board/ -type f -not -name "*key*" -exec cp {} $(RELEASE)/board \;
+
+buildwithkey:
+	make prebuild
+	cp -r board/ $(RELEASE)/
 
 package:
 	make build 
@@ -60,3 +71,8 @@ autodoc:
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
 html:
 	@$(SPHINXBUILD)  -b html "$(DOCSSOURCEDIR)" "$(DOCSBUILDDIR)" $(SPHINXOPTS)
+
+
+test:
+	cd tests
+	MICROPYPATH=$(MICROPYPATH):$(REPODIR) micropython $(TESTDIR)/integration_test.py
