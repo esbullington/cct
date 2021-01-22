@@ -1,15 +1,21 @@
+# detailed comments for teaching
+
+# these are esp32 system libraries we'll need
 import uos
 import usys
 import gc
 
+# we'll need the Firebase module to connect to database
 from covidconnection.google.ufirebase import Firebase
+
+# we have a special module for configuration
 from covidconnection.config import Config
 
 # enable garbage collection
 gc.enable()
 print("Starting garbage collection at threshold: " + str(gc.threshold()))
 
-# load the config, make sure you have appropriate settings
+# load the config file, check it to be sure you have appropriate settings
 # for your Firebase database and wifi network
 config = Config("main.conf")
 
@@ -27,3 +33,5 @@ keyfile = config.get("google_keyfile")
 
 # authenticate
 fb = Firebase(db, email, keyfile)
+
+# at this point, you can read and write to database
