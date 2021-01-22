@@ -1,21 +1,23 @@
-from covidconnection.google.ufirebase import Firebase
-from covidconnection.wifi import AccessPoint
-from covidconnection.wifi import Connection
-from covidconnection.config import Config
-import gc
 import uos
+import usys
+import gc
+
+from covidconnection.google.ufirebase import Firebase
+from covidconnection.config import Config
 
 # enable garbage collection
 gc.enable()
-print('garbage collection threshold: ' + str(gc.threshold()))
+print("Starting garbage collection at threshold: " + str(gc.threshold()))
 
 # load the config, make sure you have appropriate settings
 # for your Firebase database and wifi network
 config = Config("main.conf")
 
-## if we're running on esp32 (not desktop), then start up the wifi
-if usys.platform != "esp32":
-    wifi = Connection(config.get('ssid'), config.get('password'))
+## if we"re running on esp32 (not desktop), then start up the wifi
+if usys.platform == "esp32":
+    from covidconnection.wifi import AccessPoint
+    from covidconnection.wifi import Connection
+    wifi = Connection(config.get("ssid"), config.get("password"))
     wifi.connect()
 
 # initialize Firebase database

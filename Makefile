@@ -25,6 +25,7 @@ erase_flash:
 	esptool.py --chip esp32 --port /dev/ttyUSB0 erase_flash
 
 build:
+	rm -rf $(RELEASE)
 	find covidconnection -type d -name  "__pycache__" -exec rm -r {} +
 	mkdir -p $(RELEASE)
 	cp README.md $(RELEASE)
