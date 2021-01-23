@@ -4,6 +4,8 @@ covidconnection package
 covidconnection.proximity module
 --------------------------------
 
+Testing Proximity here
+
 .. automodule:: covidconnection.proximity
    :members:
    :undoc-members:
@@ -18,7 +20,7 @@ covidconnection.wifi module
    :show-inheritance:
 
 covidconnection.google.sheet module
-----------------------------
+-----------------------------------
 
 .. automodule:: covidconnection.google.sheet
    :members:
@@ -26,7 +28,7 @@ covidconnection.google.sheet module
    :show-inheritance:
 
 covidconnection.google.ufirebase module
---------------------------------
+---------------------------------------
 
 .. automodule:: covidconnection.google.ufirebase
    :members:
