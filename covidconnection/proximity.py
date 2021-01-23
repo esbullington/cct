@@ -38,6 +38,10 @@ def handle_coro(search_event, threshold, callback):
 
 class Proximity:
 
+    """
+    Testing 123
+    """
+
     def __init__(self, threshold=None, callback=None):
         if threshold is None:
             self._threshold = -50

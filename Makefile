@@ -68,9 +68,11 @@ autodoc:
 	sphinx-apidoc -f -o $(DOCSSOURCEDIR) ../covidconnection
 
 html:
-	rm -rf docs/build
-	@$(SPHINXBUILD) -E -a -b html "$(DOCSSOURCEDIR)" "$(DOCSBUILDDIR)" $(SPHINXOPTS)
+	@COVIDCONNECTION_VERSION=$(VERSION) $(SPHINXBUILD) -b html "$(DOCSSOURCEDIR)" "$(DOCSBUILDDIR)" $(SPHINXOPTS)
 
+watchdocs:
+	echo "Watching library and docs dirs to rebuild docs..."
+	watchmedo shell-command docs/source covidconnection -w -W --pattern="*.py;*.rst" --recursive --command "echo \"rebuilding...\" && make html"
 
 test:
 	cd tests
