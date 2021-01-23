@@ -29,6 +29,11 @@ class Firebase:
         resp = requests.get(url)
         return resp.json()
 
+    def delete(self, key):
+        url = "https://{}.firebaseio.com/{}.json?access_token={}".format(self._db, key, self._token)
+        resp = requests.delete(url)
+        return resp.json()
+
     def put(self, key, value):
         url = "https://{}.firebaseio.com/{}.json?access_token={}".format(self._db, key, self._token)
         data = json.dumps(value)

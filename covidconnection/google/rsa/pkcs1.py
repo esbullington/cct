@@ -126,10 +126,7 @@ def sign_hash(hash_value, priv_key, hash_method):
 
     payload = transform.bytes2int(padded)
     encrypted = priv_key.encrypt(payload)
-    print('sign_hash: encrypted')
     block = transform.int2bytes(encrypted, keylength)
-    print('sign_hash: int2bytes finished')
-    
     return block
 
 

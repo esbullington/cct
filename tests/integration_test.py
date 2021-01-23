@@ -30,4 +30,12 @@ db = config.get("firebase_database")
 keyfile = config.get("google_keyfile")
 
 # authenticate
-fb = Firebase(db, email, keyfile)
+def test_firebase():
+    fb = Firebase(db, email, keyfile)
+    fb.put("rewjkl32", 100)
+    result = fb.get("rewjkl32")
+    assert result == 100, "firebase get result not equal"
+    fb.delete("rewjkl32")
+
+if __name__ == "__main__":
+    test_firebase()
