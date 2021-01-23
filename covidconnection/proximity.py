@@ -1,4 +1,3 @@
-
 from micropython import const
 from ubluetooth import BLE
 import ubluetooth

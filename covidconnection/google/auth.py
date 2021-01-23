@@ -30,10 +30,13 @@ def encode_bytes_to_safe_base64(b):
     return encoded.replace(b"/", b"_").strip().decode("utf8")
 
 
-# this class builds a JWT to request an access token
-# from the Google OAuth 2.0 Authorization Server using a service account
-# see https://developers.google.com/identity/protocols/OAuth2ServiceAccount
 class JWTBuilder:
+    """
+    Builds a JWT to request an access token from the Google OAuth 2.0
+    Authorization Server using a service account.
+
+    see https://developers.google.com/identity/protocols/OAuth2ServiceAccount
+    """
 
     def __init__(self):
         self._header = {

@@ -5,17 +5,35 @@ import network
 
 # the class starts a WiFi access point
 class AccessPoint:
+    """
+    Initialize a new WiFi access point
 
-    # initialize a new WiFi access point
-    # the constructor takes ssid and password for the access point
-    # make sure that the password is not too short
-    # otherwise, an OSError may occur while staring the access point
+    Attributes
+    ----------
+    access_point_ssid : str
+        SSID string for access point
+    access_point_password : str
+        Password for access point
+
+    Methods
+    -------
+    start()
+        Start the access point
+    ip()
+        returns an IP address of the access point
+
+    Notes
+    -----
+    Make sure that the password is not too short. Otherwise, an
+    OSError may occur while staring the access point.
+
+    """
+
     def __init__(self, access_point_ssid, access_point_password):
         self.access_point_ssid = access_point_ssid
         self.access_point_password = access_point_password
         self.access_point = None
 
-    # start the access point
     def start(self):
         self.access_point = network.WLAN(network.AP_IF)
         self.access_point.active(True)
@@ -23,16 +41,41 @@ class AccessPoint:
                                  password=self.access_point_password,
                                  authmode=network.AUTH_WPA_WPA2_PSK)
 
-    # returns an IP address of the access point
     def ip(self):
         if self.access_point is None:
             raise Exception('Access point has not started!')
         return self.access_point.ifconfig()[0]
 
 
-# the class maintains a connection to a WiFi network
 class Connection:
+    """
+    Maintains a connection to a WiFi network
 
+    Parameters
+    ----------
+
+    ssid : str
+        SSID for connection
+    password : str
+        Password for connection
+    nic : str
+        Connection NIC
+
+    Methods
+    -------
+
+    connect()
+        Connect to network
+    is_connected()
+        Check if connected 
+    reconnect_if_necessary()
+        Reconnect if necessary
+    disconnect()
+        Disconnect
+    reconnect()
+        Reconnect
+
+    """
     # initialize a connection to a WiFi network
     def __init__(self, ssid, password):
 

@@ -67,10 +67,9 @@ autodoc:
 	cd $(DOCSSOURCEDIR)
 	sphinx-apidoc -f -o $(DOCSSOURCEDIR) ../covidconnection
 
-# Catch-all target: route all unknown targets to Sphinx using the new
-# "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
 html:
-	@$(SPHINXBUILD)  -b html "$(DOCSSOURCEDIR)" "$(DOCSBUILDDIR)" $(SPHINXOPTS)
+	rm -rf docs/build
+	@$(SPHINXBUILD) -E -a -b html "$(DOCSSOURCEDIR)" "$(DOCSBUILDDIR)" $(SPHINXOPTS)
 
 
 test:
