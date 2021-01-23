@@ -6,8 +6,8 @@ Module: 'micropython' on micropython-esp32-1.13-274
 def alloc_emergency_exception_buf():
     pass
 
-def const():
-    pass
+def const(x):
+    return x
 
 def heap_lock():
     pass
