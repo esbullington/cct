@@ -1,4 +1,4 @@
-## Firebase database, Google Sheets, and proximity detection modules
+## Firebase database and proximity detection modules
 ### for Micropython on ESP32 device
 
 Library for a high school STEM competition.
@@ -44,15 +44,15 @@ rshell -p <serial port here: eg, `COM5`> -b 115200 --editor vim
 
 - Make sure that the visual studio `code` command is on the Windows command line path
 
-### Google Sheet or Firebase setup + authentication
+### Firebase setup + authentication
 
-To be able to removely connect to the Google Sheets API and/or the Google Firebase API, you'll need to create a service account. Follow these directions up until you are able to download the JSON key (you'll use the key to connect to your Google Sheet):
+To be able to removely connect to the Google Firebase API, you'll need to create a service account. Follow these directions up until you are able to download the JSON key (you'll use the same type of key to connect as to a Google Sheet):
 
 https://denisluiz.medium.com/python-with-google-sheets-service-account-step-by-step-8f74c26ed28e
 
-No need to use the Python code at the end of that page, since this project uses specialized Micropython code to interact with the spreadsheet.
+No need to use the Python code at the end of that page, since this project uses Firebase and Micropython instead of the Google Sheets and regular Python shown there.
 
-Make sure to note the email of your Service Account you create, and save the downloaded JSON credential key, since you'll need both of those two connect to either a Spreadsheet or Firebase database.
+Make sure to note the email of your Service Account you create, and save the downloaded JSON credential key, since you'll need both of those two connect to either the Firebase database.
 
 Be sure to use the same project that you created above when you make a Firebase database. If you're just using the Firebase database, there's no need to create a spreadsheet and give permissions to the service account created above.
 
@@ -77,7 +77,7 @@ See documentation in docs, and generated documentation at (to be determined).
 
 ### Credits
 
-The modules `google.auth`, `google.sheets`, `ntp`, `wifi` from (or based on) [esp32-weather-google-sheets](https://github.com/artem-smotrakov/esp32-weather-google-sheets) by Artem Smotrakov, licensed under MIT.
+The modules `google.auth`, `ntp`, `wifi` from (or based on) [esp32-weather-google-sheets](https://github.com/artem-smotrakov/esp32-weather-google-sheets) by Artem Smotrakov, licensed under MIT.
 
 The code in `google.rsa` is a Micropython port by Artem Smotrakov of the original Python `rsa` package, which was written by Sybren A. Stuvel and licensed under the Apache Software License (ASL 2).
 

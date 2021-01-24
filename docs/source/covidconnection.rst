@@ -16,13 +16,6 @@ covidconnection package
    :members:
    :undoc-members:
 
-``covidconnection.google.sheet`` -- read/write to Google spreadsheet
---------------------------------------------------------------------
-
-.. automodule:: covidconnection.google.sheet
-   :members:
-   :undoc-members:
-
 ``covidconnection.google.ufirebase`` -- read/write to Firebase database
 -----------------------------------------------------------------------
 
