@@ -1,35 +1,30 @@
 covidconnection package
 =======================
 
+
 ``covidconnection.proximity`` -- Bluetooth LE proximity detection
 -----------------------------------------------------------------
-
-Example:
-
-.. code-block::
-
-    from Proximity import proximity
 
 .. automodule:: covidconnection.proximity
    :members:
    :undoc-members:
 
-covidconnection.wifi module
----------------------------
+``covidconnection.wifi`` module
+-------------------------------
 
-.. automodule:: covidconnection.wifi
+.. autoclass:: covidconnection.wifi.Connection
    :members:
    :undoc-members:
 
-covidconnection.google.sheet module
------------------------------------
+``covidconnection.google.sheet`` -- read/write to Google spreadsheet
+--------------------------------------------------------------------
 
 .. automodule:: covidconnection.google.sheet
    :members:
    :undoc-members:
 
-covidconnection.google.ufirebase module
----------------------------------------
+``covidconnection.google.ufirebase`` -- read/write to Firebase database
+-----------------------------------------------------------------------
 
 .. autoclass:: covidconnection.google.ufirebase.Firebase
    :members:

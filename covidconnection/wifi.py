@@ -1,5 +1,4 @@
 import time
-
 import network
 
 
@@ -8,22 +7,8 @@ class AccessPoint:
     """
     Initialize a new WiFi access point
 
-    Attributes
-    ----------
-    access_point_ssid : str
-        SSID string for access point
-    access_point_password : str
-        Password for access point
+    Notes:
 
-    Methods
-    -------
-    start()
-        Start the access point
-    ip()
-        returns an IP address of the access point
-
-    Notes
-    -----
     Make sure that the password is not too short. Otherwise, an
     OSError may occur while staring the access point.
 
@@ -31,10 +16,15 @@ class AccessPoint:
 
     def __init__(self, access_point_ssid, access_point_password):
         self.access_point_ssid = access_point_ssid
+        """SSID string for access point"""
         self.access_point_password = access_point_password
+        """Password for access point"""
         self.access_point = None
 
     def start(self):
+        """
+        Start the access point
+        """
         self.access_point = network.WLAN(network.AP_IF)
         self.access_point.active(True)
         self.access_point.config(essid=self.access_point_ssid,
@@ -42,6 +32,9 @@ class AccessPoint:
                                  authmode=network.AUTH_WPA_WPA2_PSK)
 
     def ip(self):
+        """
+        returns an IP address of the access point
+        """
         if self.access_point is None:
             raise Exception('Access point has not started!')
         return self.access_point.ifconfig()[0]
@@ -49,34 +42,14 @@ class AccessPoint:
 
 class Connection:
     """
-    Maintains a connection to a WiFi network
+    Initializes a connection to a WiFi network
 
-    Parameters
-    ----------
+    ..code-block::
 
-    ssid : str
-        SSID for connection
-    password : str
-        Password for connection
-    nic : str
-        Connection NIC
-
-    Methods
-    -------
-
-    connect()
-        Connect to network
-    is_connected()
-        Check if connected 
-    reconnect_if_necessary()
-        Reconnect if necessary
-    disconnect()
-        Disconnect
-    reconnect()
-        Reconnect
-
+        from covidconnection.wifi import Connection
+        wifi = Connection("ssid", "password")
+        wifi.connect()
     """
-    # initialize a connection to a WiFi network
     def __init__(self, ssid, password):
 
         # check if ssid and password are specified
@@ -84,11 +57,16 @@ class Connection:
             raise Exception('ssid/password are not set')
 
         self.ssid = ssid
+        """SSID for connection"""
         self.password = password
+        """Password for connection"""
         self.nic = network.WLAN(network.STA_IF)
+        """Connection NIC"""
 
-    # connect to the specified wi-fi network
     def connect(self):
+        """
+        Connect to the previously specified wi-fi network
+        """
         print('connecting to network: %s' % self.ssid)
         self.nic.active(True)
         self.nic.connect(self.ssid, self.password)
@@ -104,22 +82,32 @@ class Connection:
         else:
             print('could not connect to WiFi')
 
-    # check if the connection is active
     def is_connected(self):
+        """
+        Check if the connection is active
+        Returns:
+            bool: `True` if connection active, otherwise `False`
+        """
         return self.nic is not None and self.nic.active() and self.nic.isconnected()
 
-    # tries reconnecting if the connection is lost
     def reconnect_if_necessary(self):
+        """
+        Reconnect if necessary
+        """
         while not self.is_connected():
             self.connect()
 
-    # disconnect from the network
     def disconnect(self):
+        """
+        Disconnect
+        """
         print('disconnecting ...')
         self.nic.disconnect()
         self.nic.active(False)
 
-    # disconnect from the network and connect again
     def reconnect(self):
+        """
+        Reconnect
+        """
         self.disconnect()
         self.connect()

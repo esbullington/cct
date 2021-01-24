@@ -22,7 +22,7 @@ _IRQ_GATTC_WRITE_DONE = const(17)
 _IRQ_GATTC_NOTIFY = const(18)
 _IRQ_GATTC_INDICATE = const(19)
 
-def handle_coro(search_event, threshold, callback):
+def _handle_coro(search_event, threshold, callback):
     while True:
         (event, data) = (yield)
         if event == search_event:
@@ -40,29 +40,57 @@ class Proximity:
 
     """
     Detects device proximity using Bluetooth LE
+
+    Example:
+
+    .. code-block::
+
+        from covidconnection.proximity import Proximity
     """
 
     def __init__(self, threshold=None, callback=None):
+        """
+        Initializes the proximity detecter
+
+
+        Args:
+            threshold (`str`): 
+                Threshold for proximity detection strength (default: -50)
+                Adjust this threshold to set detect closer (higher) and farther (lower)
+            callback ((event, data) -> None): 
+                Function passed to retrieve proximity event and data
+        """
         if threshold is None:
             self._threshold = -50
         else:
             self._threshold = threshold
         self._callback = callback
-        self._corou = handle_coro(_IRQ_SCAN_RESULT, self._threshold, self._callback)
+        self._corou = _handle_coro(_IRQ_SCAN_RESULT, self._threshold, self._callback)
         self._corou.__next__()
         self.bt = BLE()
 
-    def handle_irq(self, event, data):
+    def _handle_irq(self, event, data):
         self._corou.send((event, data))
 
     def start(self):
+        """
+        Start proximity detection
+        """
         self.bt.active(True)
-        self.bt.irq(self.handle_irq)
+        self.bt.irq(self._handle_irq)
         self.bt.gap_scan()
 
     def stop(self):
+        """
+        Stop proximity detection
+        """
         self.bt.gap_scan(None)
         self.bt.active(False)
 
     def get_own_bluetooth_address(self):
+        """
+        Retrieve the MAC address ID for bluetooth device
+        Returns:
+          `str`: MAC address
+        """
         return self.bt.config("mac")
