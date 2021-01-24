@@ -32,18 +32,20 @@ sys.path.append(os.path.abspath("../../stubs"))
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'sphinx.ext.autodoc',
+    'sphinx.ext.autosectionlabel',
     'sphinx.ext.todo',
     'sphinx.ext.coverage',
-    'sphinx.ext.mathjax',
     'sphinx.ext.intersphinx',
     'sphinx.ext.githubpages',
     'sphinx.ext.napoleon',
-    'sphinx_autodoc_typehints'
+    'sphinx.ext.autodoc',
     ]
 
-napoleon_google_docstring = True
-napoleon_include_init_with_doc = True
+autoclass_content = 'both'
+
+autosectionlabel_prefix_document = True
+
+napoleon_include_init_with_doc = False
 napoleon_attr_annotations = True
 
 # autodoc_mock_imports = ["ujson", "ubluetooth", "micropython", "network"]

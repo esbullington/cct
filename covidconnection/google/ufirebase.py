@@ -16,26 +16,27 @@ class Firebase:
     """
     Reads, writes, modifies, and deletes objects to a Firebase database
 
-    Attributes:
-        database :
-            Firebase database name.
-        email : 
-            Email for authenticated service account
+    Example:
+
+    .. code-block::
+
+        from covidconnection.ufirebase import Firebase
+        firebase = Firebase('mydbname', 'myserviceaccount@email`, `mykeyfile`)
+        firebase.put('name', 'Joe Q Public')
+        firebase.get('name') # returns 'Joe Q Public'
     """
 
-    database: str
-    email: str
-
-    def __init__(self, database: str, email: str, keyfile: str):
+    def __init__(self, database, email, keyfile):
         """
         Initializes the Firebase database
 
+
         Args:
-            database : 
+            database (`str`): 
                 String name of the Firebase database
-            email : 
+            email (`str`): 
                 Email for service account used to authenticate
-            keyfile : 
+            keyfile (`str`): 
                 Full filename to service account keyfile (e.g. `key.json`)
                 A relative or full path to filename can be used
 
@@ -48,25 +49,29 @@ class Firebase:
         sa.email(email)
         self._token = sa.token()
         self.email = email
+        """email (`str`): Email for authenticated service account."""
         self.database = database
+        """database (`str`): Firebase database name."""
 
-    def get(self, key: str) -> str:
+    def get(self, key):
         """
         Fetch a value from the database by key
 
         Args:
-            key: Search key value
+            key (`str`): Search key value
+        Returns:
+            `any`: Retrieved  key
         """
         url = "https://{}.firebaseio.com/{}.json?access_token={}".format(self.database, key, self._token)
         resp = requests.get(url)
         return resp.json()
 
-    def delete(self, key: str):
+    def delete(self, key):
         """
         Delete a value from the database by key
 
         Args:
-            key: Search key value
+            key (`str`): Search key value
         """
         url = "https://{}.firebaseio.com/{}.json?access_token={}".format(self.database, key, self._token)
         resp = requests.delete(url)
@@ -77,8 +82,8 @@ class Firebase:
         Write a value to the database by key
 
         Args:
-            key: Search key value
-            value: Value to write to the database
+            key (`str`): Search key value
+            value (`any`): Value to write to the database
         """
         url = "https://{}.firebaseio.com/{}.json?access_token={}".format(self.database, key, self._token)
         data = json.dumps(value)
@@ -90,8 +95,8 @@ class Firebase:
         Modify a value in the database by key
 
         Args:
-            key: Search key value
-            value: Value to modify in the database
+            key (`str`): Search key value
+            value (`any`): Value to modify in the database
         """
         url = "https://{}.firebaseio.com/{}.json?access_token={}".format(self.database, key, self._token)
         data = json.dumps(value)
@@ -103,8 +108,8 @@ class Firebase:
         Add a value to a list of values under key
 
         Args:
-            key: Search key value
-            value: Value to add to existing list
+            key (`str`): Search key value
+            value (`any`): Value to add to existing list
         """
         url = "https://{}.firebaseio.com/{}.json?access_token={}".format(self.database, key, self._token)
         data = json.dumps(value)
@@ -116,8 +121,8 @@ class Firebase:
         Alias for `post`
 
         Args:
-            key: Search key value
-            value: Value to add to existing list
+            key (`str`): Search key value
+            value (`any`): Value to add to existing list
         """
         return self.post(key, value)
 
@@ -126,7 +131,9 @@ class Firebase:
         Fetch a list from the database by key
 
         Args:
-            key: Search key value
+            key (`str`): Search key value
+        Returns:
+            `[any]`: List retrived from database
         """
         url = "https://{}.firebaseio.com/{}.json?access_token={}".format(self.database, key, self._token)
         resp = requests.get(url)
