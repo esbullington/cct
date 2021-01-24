@@ -36,7 +36,10 @@ rshell -p <serial port here: eg, `COM5`> -b 115200 --editor vim
 
 ### Editor
 
-- Download Visual Studio Code, install the Python extension for VSCode, and Intellisense:
+- Download Visual Studio Code:
+    - https://visualstudio.microsoft.com/downloads/
+
+- Download the Python extension for VSCode, and Intellisense:
     - https://marketplace.visualstudio.com/items?itemName=ms-python.python
     - https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.vscodeintellicode
 
