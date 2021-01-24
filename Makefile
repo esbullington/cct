@@ -58,7 +58,7 @@ gh-pages:
 	rm -rf /tmp/gh-pages
 	cp -r $(DOCSBUILDDIR) /tmp/gh-pages
 	git checkout gh-pages
-	rm -rf * && cp -r /tmp/gh-pages/* ./ && rm -rf /tmp/gh-pages && git add . && git commit -m "Updated gh-pages" && git push && git checkout master
+	rm -rf * && cp -rT /tmp/gh-pages ./ && rm -rf /tmp/gh-pages && git add . && git commit -m "Updated gh-pages" && git push && git checkout master
 
 # Put it first so that "make" without argument is like "make help".
 docshelp:
