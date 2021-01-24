@@ -76,4 +76,4 @@ watchdocs:
 
 test:
 	cd tests
-	MICROPYPATH=$(MICROPYPATH):$(REPODIR) micropython $(TESTDIR)/integration_test.py
+	micropython $(TESTDIR)/integration_test.py
