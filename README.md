@@ -1,5 +1,7 @@
-## Firebase, Google Sheets, and Proximity modules
+## Firebase database, Google Sheets, and proximity detection modules
 ### for Micropython on ESP32 device
+
+Library for a high school STEM competition.
 
 ### Instructions
 
