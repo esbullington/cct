@@ -45,7 +45,7 @@ class Proximity:
 
     .. code-block::
 
-        from covidconnection.proximity import Proximity
+        from cct.proximity import Proximity
     """
 
     def __init__(self, threshold=None, callback=None):

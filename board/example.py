@@ -6,10 +6,10 @@ import usys
 import gc
 
 # we'll need the Firebase module to connect to database
-from covidconnection.google.ufirebase import Firebase
+from cct.google.ufirebase import Firebase
 
 # we have a special module for configuration
-from covidconnection.config import Config
+from cct.config import Config
 
 # enable garbage collection
 gc.enable()
@@ -21,7 +21,7 @@ config = Config("main.conf")
 
 ## if we"re running on esp32 (not desktop), then start up the wifi
 if usys.platform == "esp32":
-    from covidconnection.wifi import Connection
+    from cct.wifi import Connection
     wifi = Connection(config.get("ssid"), config.get("password"))
     wifi.connect()
 

@@ -8,9 +8,9 @@ try:
 except:
     import json
 
-from covidconnection.google.loadkey import LoadKey
-from covidconnection.google.auth import ServiceAccount
-from covidconnection.google import auth
+from cct.google.loadkey import LoadKey
+from cct.google.auth import ServiceAccount
+from cct.google import auth
 
 class Firebase:
     """
@@ -20,7 +20,7 @@ class Firebase:
 
     .. code-block::
 
-        from covidconnection.ufirebase import Firebase
+        from cct.ufirebase import Firebase
         firebase = Firebase('mydbname', 'myserviceaccount@email`, `mykeyfile`)
         firebase.put('name', 'Joe Q Public')
         firebase.get('name') # returns 'Joe Q Public'

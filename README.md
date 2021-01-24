@@ -1,7 +1,8 @@
-## Firebase database and proximity detection modules
+## CCT (Covid Contact Tracing) Library
+### With Firebase database and proximity detection modules
 ### for Micropython on ESP32 device
 
-Library for a high school STEM competition.
+This repo contains a library organized and built for students participating in a high school STEM competition. They will use the library to build an an automated Covid contact tracing application based on a microcontroller kept with their ID tags.
 
 ### Instructions
 

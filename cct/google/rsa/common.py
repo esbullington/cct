@@ -17,7 +17,7 @@
 """Common functionality shared by several modules."""
 
 
-from covidconnection.google.rsa._compat import is_integer
+from cct.google.rsa._compat import is_integer
 
 
 class NotRelativePrimeError(ValueError):

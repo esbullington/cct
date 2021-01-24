@@ -19,9 +19,9 @@ try:
 except:
     import json
 
-from covidconnection.google import rsa
-import covidconnection.google.rsa.common
-import covidconnection.google.rsa.core
+from cct.google import rsa
+import cct.google.rsa.common
+import cct.google.rsa.core
 
 DEFAULT_EXPONENT = 65537
 

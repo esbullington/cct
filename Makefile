@@ -1,15 +1,15 @@
 
 VERSION=0.2.0
-RELEASE=covidconnection-release-$(VERSION)
+RELEASE=cct-release-$(VERSION)
 ZIPFILE=$(RELEASE).zip
 
-REPODIR=$(HOME)/repos/covidconnection
+REPODIR=$(HOME)/repos/cct
 TESTDIR=$(REPODIR)/tests
 
 # docs
 SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
-SPHINXPROJ    = covidconnection
+SPHINXPROJ    = cct
 DOCSSOURCEDIR     = docs/source
 DOCSBUILDDIR      = docs/build
 
@@ -29,11 +29,11 @@ erase_flash:
 
 prebuild:
 	rm -rf $(RELEASE)
-	find covidconnection -type d -name  "__pycache__" -exec rm -r {} +
+	find cct -type d -name  "__pycache__" -exec rm -r {} +
 	mkdir -p $(RELEASE)
 	mkdir -p $(RELEASE)/board
 	cp README.md $(RELEASE)
-	cp -r covidconnection $(RELEASE)/board/
+	cp -r cct $(RELEASE)/board/
 	cp -r tools $(RELEASE)/
 
 build:
@@ -65,14 +65,14 @@ docshelp:
 
 autodoc:
 	cd $(DOCSSOURCEDIR)
-	sphinx-apidoc -f -o $(DOCSSOURCEDIR) ../covidconnection
+	sphinx-apidoc -f -o $(DOCSSOURCEDIR) ../cct
 
 html:
 	@COVIDCONNECTION_VERSION=$(VERSION) $(SPHINXBUILD) -b html "$(DOCSSOURCEDIR)" "$(DOCSBUILDDIR)" $(SPHINXOPTS)
 
 watchdocs:
 	echo "Watching library and docs dirs to rebuild docs..."
-	watchmedo shell-command docs/source covidconnection -w -W --pattern="*.py;*.rst" --recursive --command "echo \"rebuilding...\" && make html"
+	watchmedo shell-command docs/source cct -w -W --pattern="*.py;*.rst" --recursive --command "echo \"rebuilding...\" && make html"
 
 test:
 	cd tests

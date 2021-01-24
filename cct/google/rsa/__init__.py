@@ -22,8 +22,8 @@ prevent repetitions, or other common security improvements. Use with care.
 
 """
 
-from covidconnection.google.rsa.key import PrivateKey
-from covidconnection.google.rsa.pkcs1 import sign, sign_hash, compute_hash, \
+from cct.google.rsa.key import PrivateKey
+from cct.google.rsa.pkcs1 import sign, sign_hash, compute_hash, \
     DecryptionError, VerificationError
 
 __author__ = "Sybren Stuvel, Barry Mead and Yesudeep Mangalapilly"

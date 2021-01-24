@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# covidconnection documentation build configuration file, created by
+# cct documentation build configuration file, created by
 # sphinx-quickstart on Wed May  2 15:02:32 2018.
 #
 # This file is execfile()d with the current directory set to its
@@ -63,7 +63,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'covidconnection'
+project = 'cct'
 copyright = '2020, Eric S Bullington'
 author = 'Eric S Bullington'
 
@@ -129,7 +129,7 @@ html_sidebars = {
 # -- Options for HTMLHelp output ------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'covidconnectiondoc'
+htmlhelp_basename = 'cctdoc'
 
 
 # -- Options for LaTeX output ---------------------------------------------
@@ -156,7 +156,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'covidconnection.tex', 'covidconnection Documentation',
+    (master_doc, 'cct.tex', 'cct Documentation',
      'Eric S Bullington', 'manual'),
 ]
 
@@ -166,7 +166,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'covidconnection', 'covidconnection Documentation',
+    (master_doc, 'cct', 'cct Documentation',
      [author], 1)
 ]
 
@@ -177,8 +177,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'covidconnection', 'covidconnection Documentation',
-     author, 'covidconnection', 'One line description of project.',
+    (master_doc, 'cct', 'cct Documentation',
+     author, 'cct', 'One line description of project.',
      'Miscellaneous'),
 ]
 

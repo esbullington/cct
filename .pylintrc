@@ -1,6 +1,6 @@
 [MASTER]
 # Loaded Stubs:  esp32-1.12.0 
-init-hook='import sys;sys.path[1:1]=["covidconnection","stubs" ]'
+init-hook='import sys;sys.path[1:1]=["cct","stubs" ]'
 
 [MESSAGES CONTROL]
 # Only show warnings with the listed confidence levels. Leave empty to show

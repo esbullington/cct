@@ -46,7 +46,7 @@ class Connection:
 
     ..code-block::
 
-        from covidconnection.wifi import Connection
+        from cct.wifi import Connection
         wifi = Connection("ssid", "password")
         wifi.connect()
     """

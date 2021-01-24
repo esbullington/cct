@@ -1,7 +1,7 @@
 
 import usys
 
-from covidconnection.google.rsa.key import PrivateKey
+from cct.google.rsa.key import PrivateKey
 
 
 # this class holds a private RSA key

@@ -7,8 +7,8 @@ __pycache__/
 *.so
 
 # ignore releases
-covidconnection-release*
-covidconnection-board*
+cct-release*
+cct-board*
 *.zip
 
 # Distribution / packaging

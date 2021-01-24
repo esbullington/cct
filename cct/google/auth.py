@@ -13,8 +13,8 @@ try:
 except ImportError:
     import json
 
-from covidconnection.google.rsa import pkcs1
-from covidconnection.google import ntp
+from cct.google.rsa import pkcs1
+from cct.google import ntp
 
 SCOPE_USERINFO_EMAIL = "https://www.googleapis.com/auth/userinfo.email"
 SCOPE_FIREBASE_DATABASE = "https://www.googleapis.com/auth/firebase.database"

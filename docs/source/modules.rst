@@ -1,9 +1,9 @@
 :orphan:
 
-covidconnection
+cct
 ===============
 
 .. toctree::
    :maxdepth: 4
 
-   covidconnection
+   cct

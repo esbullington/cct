@@ -1,24 +1,24 @@
-covidconnection package
+cct package
 =======================
 
 
-``covidconnection.proximity`` -- Bluetooth LE proximity detection
+``cct.proximity`` -- Bluetooth LE proximity detection
 -----------------------------------------------------------------
 
-.. automodule:: covidconnection.proximity
+.. automodule:: cct.proximity
    :members:
    :undoc-members:
 
-``covidconnection.wifi`` module
+``cct.wifi`` module
 -------------------------------
 
-.. autoclass:: covidconnection.wifi.Connection
+.. autoclass:: cct.wifi.Connection
    :members:
    :undoc-members:
 
-``covidconnection.google.ufirebase`` -- read/write to Firebase database
+``cct.google.ufirebase`` -- read/write to Firebase database
 -----------------------------------------------------------------------
 
-.. autoclass:: covidconnection.google.ufirebase.Firebase
+.. autoclass:: cct.google.ufirebase.Firebase
    :members:
    :undoc-members:
