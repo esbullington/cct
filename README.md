@@ -71,7 +71,7 @@ Go to the [Firebase database console](https://console.firebase.google.com/u/0/).
 
 #### Project library documentation
 
-See documentation in docs, and generated documentation at (to be determined).
+Find `cct` library documentation at: https://esbullington.github.io/cct/index.html
 
 #### Micropython documentation
 
