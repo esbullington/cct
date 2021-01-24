@@ -1,10 +1,14 @@
 covidconnection package
 =======================
 
-covidconnection.proximity module
---------------------------------
+``covidconnection.proximity`` -- Bluetooth LE proximity detection
+-----------------------------------------------------------------
 
-Testing Proximity here
+Example:
+
+.. code-block::
+
+    from Proximity import proximity
 
 .. automodule:: covidconnection.proximity
    :members:
@@ -33,4 +37,3 @@ covidconnection.google.ufirebase module
 .. automodule:: covidconnection.google.ufirebase
    :members:
    :undoc-members:
-   :show-inheritance:

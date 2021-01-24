@@ -33,14 +33,18 @@ sys.path.append(os.path.abspath("../../stubs"))
 # ones.
 extensions = [
     'sphinx.ext.autodoc',
-    'sphinx_autodoc_typehints',
-    'sphinx.ext.doctest',
     'sphinx.ext.todo',
     'sphinx.ext.coverage',
     'sphinx.ext.mathjax',
     'sphinx.ext.intersphinx',
     'sphinx.ext.githubpages',
-    'numpydoc']
+    'sphinx.ext.napoleon',
+    'sphinx_autodoc_typehints'
+    ]
+
+napoleon_google_docstring = True
+napoleon_include_init_with_doc = True
+napoleon_attr_annotations = True
 
 # autodoc_mock_imports = ["ujson", "ubluetooth", "micropython", "network"]
 

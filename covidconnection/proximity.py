@@ -39,7 +39,7 @@ def handle_coro(search_event, threshold, callback):
 class Proximity:
 
     """
-    Testing 123
+    Detects device proximity using Bluetooth LE
     """
 
     def __init__(self, threshold=None, callback=None):
