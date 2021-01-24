@@ -68,7 +68,7 @@ class JWTBuilder:
     # build a JWT
     def build(self):
         time = ntp.time()
-        assert time is not None and n > 0, "invalid npt time value for auth"
+        assert time is not None and time > 0, "invalid npt time value for auth"
         self._claim["iat"] = time
         self._claim["exp"] = time + self._expiration
         encoded_header = encode_dict_to_base64(self._header)
@@ -99,6 +99,7 @@ class ServiceAccount:
 
     def token(self):
         print("token: build jwt")
+        # print(self._key)
 
         # prepare a JWT
         builder = JWTBuilder()
