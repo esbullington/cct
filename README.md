@@ -1,7 +1,9 @@
 ## CCT (Covid Contact Tracing) Library
 ### With Firebase database and proximity detection modules for Micropython
 
-This repo contains a library organized and built for students participating in a high school STEM competition. Students will use the library to build an an automated Covid contact tracing application for an ESP32 microcontroller kept attacked to their ID tags.
+This repo contains a library coded and organized for students participating in a high school STEM competition. Students will use the library to build an an automated Covid contact tracing application for an ESP32 microcontroller kept attacked to their ID tags.
+
+Many of the Micropython modules come from third-party code: see [Credits](#Credits).
 
 ### Instructions
 
