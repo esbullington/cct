@@ -1,0 +1,470 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>cct package &mdash; cct 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> cct
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">cct package</a><ul>
+<li><a class="reference internal" href="#module-cct.proximity"><code class="docutils literal notranslate"><span class="pre">cct.proximity</span></code> – Bluetooth LE proximity detection</a></li>
+<li><a class="reference internal" href="#cct-wifi-module"><code class="docutils literal notranslate"><span class="pre">cct.wifi</span></code> module</a></li>
+<li><a class="reference internal" href="#cct-google-ufirebase-read-write-to-firebase-database"><code class="docutils literal notranslate"><span class="pre">cct.google.ufirebase</span></code> – read/write to Firebase database</a></li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">cct</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>cct package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/covidconnection.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="cct-package">
+<h1>cct package<a class="headerlink" href="#cct-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-cct.proximity">
+<span id="cct-proximity-bluetooth-le-proximity-detection"></span><h2><code class="docutils literal notranslate"><span class="pre">cct.proximity</span></code> – Bluetooth LE proximity detection<a class="headerlink" href="#module-cct.proximity" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="cct.proximity.Proximity">
+<em class="property">class </em><code class="sig-prename descclassname">cct.proximity.</code><code class="sig-name descname">Proximity</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">threshold</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">callback</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cct.proximity.Proximity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Detects device proximity using Bluetooth LE</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">cct.proximity</span> <span class="kn">import</span> <span class="n">Proximity</span>
+</pre></div>
+</div>
+<p>Initializes the proximity detecter</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>threshold</strong> (<cite>str</cite>) – Threshold for proximity detection strength (default: -50)
+Adjust this threshold to set detect closer (higher) and farther (lower)</p></li>
+<li><p><strong>callback</strong> (<em>(</em><em>event</em><em>, </em><em>data</em><em>) </em><em>-&gt; None</em>) – Function passed to retrieve proximity event and data</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="cct.proximity.Proximity.get_own_bluetooth_address">
+<code class="sig-name descname">get_own_bluetooth_address</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cct.proximity.Proximity.get_own_bluetooth_address" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve the MAC address ID for bluetooth device
+:returns: MAC address
+:rtype: <cite>str</cite></p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cct.proximity.Proximity.start">
+<code class="sig-name descname">start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cct.proximity.Proximity.start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start proximity detection</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cct.proximity.Proximity.stop">
+<code class="sig-name descname">stop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cct.proximity.Proximity.stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop proximity detection</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="cct-wifi-module">
+<h2><code class="docutils literal notranslate"><span class="pre">cct.wifi</span></code> module<a class="headerlink" href="#cct-wifi-module" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="cct.wifi.Connection">
+<em class="property">class </em><code class="sig-prename descclassname">cct.wifi.</code><code class="sig-name descname">Connection</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ssid</span></em>, <em class="sig-param"><span class="n">password</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cct.wifi.Connection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initializes a connection to a WiFi network</p>
+<p>..code-block:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">cct.wifi</span> <span class="kn">import</span> <span class="n">Connection</span>
+<span class="n">wifi</span> <span class="o">=</span> <span class="n">Connection</span><span class="p">(</span><span class="s2">&quot;ssid&quot;</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">)</span>
+<span class="n">wifi</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt id="cct.wifi.Connection.connect">
+<code class="sig-name descname">connect</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cct.wifi.Connection.connect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Connect to the previously specified wi-fi network</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cct.wifi.Connection.disconnect">
+<code class="sig-name descname">disconnect</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cct.wifi.Connection.disconnect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disconnect</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cct.wifi.Connection.is_connected">
+<code class="sig-name descname">is_connected</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cct.wifi.Connection.is_connected" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the connection is active
+:returns: <cite>True</cite> if connection active, otherwise <cite>False</cite>
+:rtype: bool</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cct.wifi.Connection.nic">
+<code class="sig-name descname">nic</code><a class="headerlink" href="#cct.wifi.Connection.nic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Connection NIC</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cct.wifi.Connection.password">
+<code class="sig-name descname">password</code><a class="headerlink" href="#cct.wifi.Connection.password" title="Permalink to this definition">¶</a></dt>
+<dd><p>Password for connection</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cct.wifi.Connection.reconnect">
+<code class="sig-name descname">reconnect</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cct.wifi.Connection.reconnect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reconnect</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cct.wifi.Connection.reconnect_if_necessary">
+<code class="sig-name descname">reconnect_if_necessary</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cct.wifi.Connection.reconnect_if_necessary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reconnect if necessary</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cct.wifi.Connection.ssid">
+<code class="sig-name descname">ssid</code><a class="headerlink" href="#cct.wifi.Connection.ssid" title="Permalink to this definition">¶</a></dt>
+<dd><p>SSID for connection</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="cct-google-ufirebase-read-write-to-firebase-database">
+<h2><code class="docutils literal notranslate"><span class="pre">cct.google.ufirebase</span></code> – read/write to Firebase database<a class="headerlink" href="#cct-google-ufirebase-read-write-to-firebase-database" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="cct.google.ufirebase.Firebase">
+<em class="property">class </em><code class="sig-prename descclassname">cct.google.ufirebase.</code><code class="sig-name descname">Firebase</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">database</span></em>, <em class="sig-param"><span class="n">email</span></em>, <em class="sig-param"><span class="n">keyfile</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cct.google.ufirebase.Firebase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads, writes, modifies, and deletes objects to a Firebase database</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">cct.ufirebase</span> <span class="kn">import</span> <span class="n">Firebase</span>
+<span class="n">firebase</span> <span class="o">=</span> <span class="n">Firebase</span><span class="p">(</span><span class="s1">&#39;mydbname&#39;</span><span class="p">,</span> <span class="s1">&#39;myserviceaccount@email`, `mykeyfile`)</span>
+<span class="n">firebase</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;Joe Q Public&#39;</span><span class="p">)</span>
+<span class="n">firebase</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span> <span class="c1"># returns &#39;Joe Q Public&#39;</span>
+</pre></div>
+</div>
+<p>Initializes the Firebase database</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>database</strong> (<cite>str</cite>) – String name of the Firebase database</p></li>
+<li><p><strong>email</strong> (<cite>str</cite>) – Email for service account used to authenticate</p></li>
+<li><p><strong>keyfile</strong> (<cite>str</cite>) – Full filename to service account keyfile (e.g. <cite>key.json</cite>)
+A relative or full path to filename can be used</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="cct.google.ufirebase.Firebase.append_to_list">
+<code class="sig-name descname">append_to_list</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em>, <em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cct.google.ufirebase.Firebase.append_to_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for <cite>post</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> (<cite>str</cite>) – Search key value</p></li>
+<li><p><strong>value</strong> (<cite>any</cite>) – Value to add to existing list</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cct.google.ufirebase.Firebase.database">
+<code class="sig-name descname">database</code><a class="headerlink" href="#cct.google.ufirebase.Firebase.database" title="Permalink to this definition">¶</a></dt>
+<dd><p>Firebase database name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>database (<cite>str</cite>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cct.google.ufirebase.Firebase.delete">
+<code class="sig-name descname">delete</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cct.google.ufirebase.Firebase.delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete a value from the database by key</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>key</strong> (<cite>str</cite>) – Search key value</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cct.google.ufirebase.Firebase.email">
+<code class="sig-name descname">email</code><a class="headerlink" href="#cct.google.ufirebase.Firebase.email" title="Permalink to this definition">¶</a></dt>
+<dd><p>Email for authenticated service account.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>email (<cite>str</cite>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cct.google.ufirebase.Firebase.get">
+<code class="sig-name descname">get</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cct.google.ufirebase.Firebase.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetch a value from the database by key</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>key</strong> (<cite>str</cite>) – Search key value</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Retrieved  key</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><cite>any</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cct.google.ufirebase.Firebase.get_list">
+<code class="sig-name descname">get_list</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cct.google.ufirebase.Firebase.get_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetch a list from the database by key</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>key</strong> (<cite>str</cite>) – Search key value</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>List retrived from database</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><cite>[any]</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cct.google.ufirebase.Firebase.patch">
+<code class="sig-name descname">patch</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em>, <em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cct.google.ufirebase.Firebase.patch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Modify a value in the database by key</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> (<cite>str</cite>) – Search key value</p></li>
+<li><p><strong>value</strong> (<cite>any</cite>) – Value to modify in the database</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cct.google.ufirebase.Firebase.post">
+<code class="sig-name descname">post</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em>, <em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cct.google.ufirebase.Firebase.post" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a value to a list of values under key</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> (<cite>str</cite>) – Search key value</p></li>
+<li><p><strong>value</strong> (<cite>any</cite>) – Value to add to existing list</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cct.google.ufirebase.Firebase.put">
+<code class="sig-name descname">put</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em>, <em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cct.google.ufirebase.Firebase.put" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write a value to the database by key</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> (<cite>str</cite>) – Search key value</p></li>
+<li><p><strong>value</strong> (<cite>any</cite>) – Value to write to the database</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2020, Eric S Bullington.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

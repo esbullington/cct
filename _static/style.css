@@ -1,0 +1,19 @@
+@import url("css/theme.css"); /* make sure to sync this with the base theme's css filename */
+
+.wy-side-scroll {
+    background: white;
+}
+
+.wy-nav-side {
+    background: white;
+    border: 1px solid #c9c9c9;
+}
+
+.wy-menu-vertical a {
+    color: #404040;
+}
+
+.wy-menu-vertical a:hover {
+    background-color: #c9c9c9;
+    cursor: pointer;
+}
