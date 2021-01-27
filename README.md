@@ -9,45 +9,12 @@ Many of the Micropython modules come from third-party code: see [Credits](#Credi
 
 #### Setting up development environment
 
-- First, you need to make sure you have a (regular) Python 3 environment on Windows. Specifically, you need to have access to the `pip` command to install Python packages, which we'll have to use to install the tools needed to flash the Micropython onto the esp32, and then the tools needed to interact with it. This should make both the `python3` and the `pip3` commands available on the command line. Python 3 can be downloaded from: https://www.python.org/downloads/
-
-- You also will need to install OpenSSL, can be found below the [`curl` download links here](https://curl.se/windows/). Look for the `OpenSSL <version> [64bit/32bit]` (probably you'll want the 64bit version). After you've downloaded it, make sure you've added the path to the Windows Environment path, so that the `openssl` command is available on the Windows command line.
-
-- Using the `pip` (or maybe `pip3`) command on the Windows command line, install the `rsa` package:
-
-```
-pip install rsa
-```
-
-#### Setting up environment for ESP32
-
-- Using the `pip` (or maybe `pip3`) command on the Windows command line from above, you need to install the `esptool` and `rshell` packages:
-
-```
-pip install esptool
-pip install rshell
-```
-
-- To run the ESP32 environment, run the following command. Set `--editor` flag to whichever edit you wish to use (for instructions on how to use Visual Studio Code, see instructions under [Editor](#editor) below):
-
-```
-rshell -p <serial port here: eg, `COM5`> -b 115200 --editor vim
-```
-
-- Now that you're in the `rshell` environment, you can start the Python prompt inside the ESP32 device by running the `repl` command. To start the editor, run `edit <yourfiletoedit.py>`.
-
-### Editor
-
-- Download Visual Studio Code:
-    - https://visualstudio.microsoft.com/downloads/
-
-- Download the Python extension for VSCode, and Intellisense:
-    - https://marketplace.visualstudio.com/items?itemName=ms-python.python
-    - https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.vscodeintellicode
-
-- Follow instructions (here)[https://github.com/Josverl/micropython-stubber] to install autocompletion and code linting for Micropython
-
-- Make sure that the visual studio `code` command is on the Windows command line path
+- First, download the most recent library release, with a filename like `cct-release-<version.zip`, from:  https://github.com/esbullington/cct/releases/latest
+- Unzip the zip file.
+- Open up Windows Powershell ISE as admin (type "powershell ise" in Windows search box, then "Run as Administrator")
+- Using the `file` menu, or the open folder icon, navigate to the unzipped zip file, then to the `tools` subfolder
+- Double-click on the `install.ps1` file
+- Now, click the "run script" button (green play icon) to run the script and install project environment
 
 ### Firebase setup + authentication
 
