@@ -12,7 +12,12 @@ Many of the Micropython modules come from third-party code: see [Credits](#Credi
 - First, download the most recent library release, with a filename like `cct-release-<version.zip`, from:  https://github.com/esbullington/cct/releases/latest
 - Unzip the zip file.
 - Open up Windows Powershell ISE as admin (type "powershell ise" in Windows search box, then "Run as Administrator")
-- Using the `file` menu, or the open folder icon, navigate to the unzipped zip file, then to the `tools` subfolder
+- In the bottom window of the Windows Powershell ISE, enter at the prompt (`PS C:\Windows\system32 >`) the following:
+
+    Set-ExecutionPolicy Bypass -Scope Process
+
+- Access the execution policy change with "Yes to All"
+- Then, using the `file` menu, or the open folder icon, navigate to the unzipped zip file, then to the `tools` subfolder
 - Double-click on the `install.ps1` file
 - Now, click the "run script" button (green play icon) to run the script and install project environment
 
