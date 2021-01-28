@@ -31,14 +31,19 @@ To run the ESP32 environment, run the following command. Set `--editor` flag to 
 rshell -p COM3 -b 115200 --editor code
 ```
 
-If your board is on another serial port than `COM3 `, use that port instead. You can check to see which port the board is on by viewing the device under the Window's device manager.
+If your board is on another serial port than `COM3`, use that port instead. You can find out which port the board is on by viewing the device under the Window's device manager. You may need to update device drivers if your device shows an exclamation point in the device manager panel.
 
-Now that you're in the rshell environment, you can start the Python prompt inside the ESP32 device by running the `repl` command. To start the editor, run `edit <yourfiletoedit.py>`. To view the ESP32 filesystem, navigate to the board using the command `cd /pyboard` (and `ls` to list files). You should also view the other commands that are available using the `help` command.
+Now that you're in the rshell environment, you can start the Python prompt inside the ESP32 device by running the `repl` command.
 
+To start the editor and edit files directly on the board, run `edit <yourfiletoedit.py>`.
+
+To view the ESP32 filesystem, navigate to the board using the command `cd /pyboard` (and `ls` to list files).
+
+You should also run `help` to view the other commands that are available (eg, `rsync` syncing files on the board with the Windows machine).
 
 ### Firebase setup + authentication
 
-To be able to removely connect to the Google Firebase API, you'll need to create a service account. Follow these directions up until you are able to download the JSON key (you'll use the same type of key to connect as to a Google Sheet):
+To be able to remotely connect to the Google Firebase API, you'll need to create a service account. Follow these directions up until you are able to download the JSON key (you'll use the same type of key to connect as to a Google Sheet):
 
 https://denisluiz.medium.com/python-with-google-sheets-service-account-step-by-step-8f74c26ed28e
 
