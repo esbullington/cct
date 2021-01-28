@@ -28,7 +28,7 @@ Set-ExecutionPolicy Bypass -Scope Process
 To run the ESP32 environment, run the following command. Set `--editor` flag to whichever editor you wish to use (to use Visual Studio Code, use `--editor code`):
 
 ```bash
-rshell -p <COM3 or whichever serial port the board is on> -b 115200 --editor code
+rshell -p COM3 -b 115200 --editor code
 ```
 
 If your board is on another serial port than `COM3 `, use that port instead. You can check to see which port the board is on by viewing the device under the Window's device manager.
