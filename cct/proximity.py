@@ -1,6 +1,5 @@
 from micropython import const
 from ubluetooth import BLE
-import ubluetooth
 
 _IRQ_CENTRAL_CONNECT = const(1)
 _IRQ_CENTRAL_DISCONNECT = const(2)
