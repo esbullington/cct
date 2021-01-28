@@ -14,12 +14,25 @@ Many of the Micropython modules come from third-party code: see [Credits](#Credi
 - Open up Windows Powershell ISE as admin (type "powershell ise" in Windows search box, then "Run as Administrator")
 - In the bottom window of the Windows Powershell ISE, enter at the prompt (`PS C:\Windows\system32 >`) the following:
 
-    Set-ExecutionPolicy Bypass -Scope Process
+```powershell
+Set-ExecutionPolicy Bypass -Scope Process
+```
 
 - Access the execution policy change with "Yes to All"
 - Then, using the `file` menu, or the open folder icon, navigate to the unzipped zip file, then to the `tools` subfolder
 - Double-click on the `install.ps1` file
 - Now, click the "run script" button (green play icon) to run the script and install project environment
+
+### Running code on the ESP32
+
+To run the ESP32 environment, run the following command. Set `--editor` flag to whichever editor you wish to use (to use Visual Studio Code, use `--editor code`):
+
+```bash
+rshell -p <COM3 or whichever serial port the board is on> -b 115200 --editor code
+```
+
+Now that you're in the rshell environment, you can start the Python prompt inside the ESP32 device by running the `repl` command. To start the editor, run `edit <yourfiletoedit.py>`. To view the ESP32 filesystem, navigate to the board using the command `cd /pyboard` (and `ls` to list files). You should also view the other commands that are available using the `help` command.
+
 
 ### Firebase setup + authentication
 
