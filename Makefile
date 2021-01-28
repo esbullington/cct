@@ -31,10 +31,15 @@ prebuild:
 	rm -rf $(RELEASE)
 	find cct -type d -name  "__pycache__" -exec rm -r {} +
 	mkdir -p $(RELEASE)
+	mkdir -p $(RELEASE)/firmware
 	mkdir -p $(RELEASE)/board
 	cp README.md $(RELEASE)
 	cp -r cct $(RELEASE)/board/
 	cp -r tools $(RELEASE)/
+	cp -r .vscode $(RELEASE)/
+	cp .pylintrc $(RELEASE)/.pylintrc
+	cp -r stubs $(RELEASE)/
+	cp firmware/$(FIRMWARE) $(RELEASE)/firmware/firmware.bin
 
 build:
 	make prebuild
@@ -46,7 +51,7 @@ buildwithkey:
 
 package:
 	make build 
-	@zip -r $(ZIPFILE) $(RELEASE) 1> /dev/null
+	@zip -r $(ZIPFILE) $(RELEASE)/* 1> /dev/null
 
 
 clean:

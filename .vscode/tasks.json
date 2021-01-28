@@ -2,7 +2,50 @@
     // See https://go.microsoft.com/fwlink/?LinkId=733558
     // for the documentation about the tasks.json format
     "version": "2.0.0",
-    "tasks": [
+      "tasks": [
+        {
+          "label": "Deploy updates to ESP32",
+          "type": "shell",
+          "command": "rshell -p ${input:comPort} rsync board /pyboard",
+          "group": {
+              "kind": "build",
+              "isDefault": true
+          },
+          "presentation": {
+              "reveal": "always",
+              "panel": "new"
+          }
+        },
+        {
+          "label": "List ESP32 files",
+          "type": "shell",
+          "command": "rshell -p ${input:comPort} ls /pyboard",
+          "group": "build",
+          "presentation": {
+              "reveal": "always",
+              "panel": "new"
+          }
+        },
+        {
+          "label": "Deploy updates to ESP32",
+          "type": "shell",
+          "command": "rshell -p ${input:comPort} rsync board /pyboard",
+          "group": "build",
+          "presentation": {
+              "reveal": "always",
+              "panel": "new"
+          }
+        },
+        {
+          "label": "Burn initial firmware",
+          "type": "shell",
+          "command": "esptool.py --chip esp32 --port ${input:comPort} write_flash -z 0x1000 firmware/esp32.bin",
+          "group": "build",
+          "presentation": {
+              "reveal": "always",
+              "panel": "new"
+          }
+        },
         {
             "label": "pylint all",
             "detail": "py -m pylint: whole project",
@@ -28,5 +71,14 @@
                 }
             }
         }
-    ]
+    ],
+	  "inputs": [
+		{
+		  "id": "comPort",
+		  "type": "pickString",
+          "description": "ESP32 COM Port",
+		  "options": ["COM1", "COM2", "COM3", "COM4", "COM5", "COM6", "COM7", "COM8"],
+          "default": "COM3"
+		}
+	  ]
 }

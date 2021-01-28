@@ -1,6 +1,7 @@
 {
     "python.languageServer": "Pylance",
     "python.autoComplete.extraPaths": [
+        "./board",
         "./cct",
         "./stubs"
     ],
@@ -8,6 +9,7 @@
     "python.linting.pylintEnabled": true,
     "python.jediEnabled": false,
     "python.analysis.extraPaths": [
+        "./board",
         "./cct",
         "./stubs"
     ]
