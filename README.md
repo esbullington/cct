@@ -31,6 +31,8 @@ To run the ESP32 environment, run the following command. Set `--editor` flag to 
 rshell -p <COM3 or whichever serial port the board is on> -b 115200 --editor code
 ```
 
+If your board is on another serial port than `COM3 `, use that port instead. You can check to see which port the board is on by viewing the device under the Window's device manager.
+
 Now that you're in the rshell environment, you can start the Python prompt inside the ESP32 device by running the `repl` command. To start the editor, run `edit <yourfiletoedit.py>`. To view the ESP32 filesystem, navigate to the board using the command `cd /pyboard` (and `ls` to list files). You should also view the other commands that are available using the `help` command.
 
 
