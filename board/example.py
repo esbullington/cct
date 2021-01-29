@@ -1,9 +1,8 @@
 # detailed comments for teaching
 
 # these are esp32 system libraries we'll need
-import uos
-import usys
 import gc
+import usys
 
 # we'll need the Firebase module to connect to database
 from cct.google.ufirebase import Firebase
@@ -13,7 +12,6 @@ from cct.config import Config
 
 # enable garbage collection
 gc.enable()
-print("Starting garbage collection at threshold: " + str(gc.threshold()))
 
 # load the config file, check it to be sure you have appropriate settings
 # for your Firebase database and wifi network
