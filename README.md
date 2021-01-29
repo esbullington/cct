@@ -23,6 +23,16 @@ Set-ExecutionPolicy Bypass -Scope Process
 - Double-click on the `install.ps1` file
 - Now, click the "run script" button (green play icon) to run the script and install project environment
 
+#### Setting up the ESP32 on Windows
+
+To communicate with the ESP32, and to run code on the device, we need to make sure the ESP32 is properly set up on Windows. Often, when you first plug the device in, Windows will automatically install any needed drivers. So plug the device into the USB port, and watch for a prompt about device drivers (you may need to click "yes" if prompted to install any drivers).
+
+After the drivers are installed, check the Windows device manager to see if the device is listed under.
+
+#### Flashing the ESP32 firmware with Micropython
+
+In order to run Python code on the ESP32, we first we have to flash the device with the Micropython firmware. In order to do that
+
 ### Running code on the ESP32
 
 To run the ESP32 environment, run the following command. Set `--editor` flag to whichever editor you wish to use (to use Visual Studio Code, use `--editor code`):
