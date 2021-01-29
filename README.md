@@ -23,19 +23,45 @@ Set-ExecutionPolicy Bypass -Scope Process
 - Double-click on the `install.ps1` file
 - Now, click the "run script" button (green play icon) to run the script and install project environment
 
+#### Setting up Visual Studio Code
+
+In the step above, the program Visual Studio Code, which we'll abbreviate VSCode, was installed on your computer. This is the program -- called an IDE (Integrated Development Environment) -- we'll use to program the ESP32. Open up VSCode, and select "Open folder" under the `file` menu. Navigate to the `cct-release...` folder that you created above by unzipping the project zip file. Be sure to open the nested `cct-release...` folder if Windows created two of them (eg, `C:\Users\johndoe\Downloads\cct-release-0.2.4\cct-release-0.2.4`). The folder you want to open file contain subfolders such as `board`, `tools`, `firmware`, etc.
+
+Once that folder has been opened, a few necessary extensions may start to install. Once they're installed, your development environment should be ready to use.
+
 #### Setting up the ESP32 on Windows
 
-To communicate with the ESP32, and to run code on the device, we need to make sure the ESP32 is properly set up on Windows. Often, when you first plug the device in, Windows will automatically install any needed drivers. So plug the device into the USB port, and watch for a prompt about device drivers (you may need to click "yes" if prompted to install any drivers).
+To communicate with the ESP32, and to run code on the device, we need to make sure the ESP32 is properly set up on Windows. Often, when you first plug the device in, Windows will automatically install any needed drivers. So plug the device into the USB port, and watch for a "Setting up device..." prompt (you may need to click "yes" if prompted to install any drivers).
 
-After the drivers are installed, check the Windows device manager to see if the device is listed under.
+After the drivers are installed, open up the Windows Device Manager by typing "device manager" in the search box and clicking on the Windows Device Manager prompt. Check under the "Ports" entry to see if the device is listed as "USB Serial Port (COM3)" (it's possible it will be another COM number).  If the entry displays an exclamation mark, right click on the entry and select "Update driver". 
+
+Once the device is shown without any exclamation point warning symbols, it should be ready to be programmed. But first, you'll need to flash the device with Micropython firmware to be able to use Python to program the ESP32.
 
 #### Flashing the ESP32 firmware with Micropython
 
-In order to run Python code on the ESP32, we first we have to flash the device with the Micropython firmware. In order to do that
+In order to run Python code on the ESP32, we first we have to flash the device with the Micropython firmware:
+
+- Open up Visual Studio Code
+- Under the `Terminal` top menu, select `Run Task`
+- Under `Run Task`, select `Burn Initial Firmware`
+- Enter your port number (probably "COM3")
+- It will take a while to flash the firmware, be sure not to disconnect the ESP32 while it's flashing the device 
+- Once you see the words "Hash of data verified.", then your ESP32 has bee properly flashed. You may now press any key to close the terminal.
 
 ### Running code on the ESP32
 
-To run the ESP32 environment, run the following command. Set `--editor` flag to whichever editor you wish to use (to use Visual Studio Code, use `--editor code`):
+To run Python on the ESP32 environment, you have two choices: you can either do your development on Windows, and then copy the files onto the ESP32, or you can edit the files directly on the device (there's actually an intermediate file created, but it will seem as though you're working directly on the device).
+
+#### Editing code on Windows
+
+Edit code in Visual Studio Code just as you would in any other editor. When you're ready to run the code:
+
+- Under the `Terminal` top menu, select `Run Task`
+- Under `Run Task`, select `Deploy Updates to ESP32`
+- Enter your port number (probably "COM3")
+
+#### Editing code on the device
+run the following command. Set `--editor` flag to whichever editor you wish to use (to use Visual Studio Code, use `--editor code`):
 
 ```bash
 rshell -p COM3 -b 115200 --editor code

@@ -39,7 +39,7 @@ prebuild:
 	cp -r .vscode $(RELEASE)/
 	cp .pylintrc $(RELEASE)/.pylintrc
 	cp -r stubs $(RELEASE)/
-	cp firmware/$(FIRMWARE) $(RELEASE)/firmware/firmware.bin
+	cp firmware/$(FIRMWARE) $(RELEASE)/firmware/esp32.bin
 
 build:
 	make prebuild
