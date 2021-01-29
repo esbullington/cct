@@ -1,5 +1,5 @@
 
-VERSION=0.2.3
+VERSION=0.2.4
 RELEASE=cct-release-$(VERSION)
 ZIPFILE=$(RELEASE).zip
 
