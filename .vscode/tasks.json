@@ -37,7 +37,7 @@
           }
         },
         {
-          "label": "Burn initial firmware (caution - erases files!)",
+          "label": "Flash initial firmware (caution - erases files!)",
           "type": "shell",
           "command": "esptool.py --chip esp32 --port ${input:comPort} erase_flash && esptool.py --chip esp32 --port ${input:comPort} write_flash -z 0x1000 firmware/esp32.bin",
           "group": "build",

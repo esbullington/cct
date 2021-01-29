@@ -43,7 +43,7 @@ In order to run Python code on the ESP32, we first we have to flash the device w
 
 - Open up Visual Studio Code
 - Under the `Terminal` top menu, select `Run Task`
-- Under `Run Task`, select `Burn Initial Firmware`
+- Under `Run Task`, select `Flash Initial Firmware`
 - Enter your port number (probably "COM3")
 - It will take a while to flash the firmware, be sure not to disconnect the ESP32 while it's flashing the device 
 - Once you see the words "Hash of data verified.", then your ESP32 has bee properly flashed. You may now press any key to close the terminal.
