@@ -27,9 +27,9 @@
           }
         },
         {
-          "label": "Deploy updates to ESP32",
+          "label": "Open shell prompt on ESP32",
           "type": "shell",
-          "command": "rshell -p ${input:comPort} rsync board /pyboard",
+          "command": "rshell -p ${input:comPort} repl",
           "group": "build",
           "presentation": {
               "reveal": "always",
@@ -47,7 +47,7 @@
           }
         },
         {
-            "label": "pylint all",
+            "label": "pylint all: reveal code problems",
             "detail": "py -m pylint: whole project",
             "type": "shell",
             "command": "py -m pylint --msg-template '{path}:{line}:{column}:{category}:{symbol} - {msg}' src",
@@ -75,10 +75,9 @@
 	  "inputs": [
 		{
 		  "id": "comPort",
-		  "type": "pickString",
-          "description": "ESP32 COM Port",
-		  "options": ["COM1", "COM2", "COM3", "COM4", "COM5", "COM6", "COM7", "COM8"],
-          "default": "COM3"
+		  "type": "promptString",
+      "description": "ESP32 COM Port (try COM3)",
+      "password": false
 		}
 	  ]
 }

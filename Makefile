@@ -51,7 +51,7 @@ buildwithkey:
 
 package:
 	make build 
-	@zip -r $(ZIPFILE) $(RELEASE)/* 1> /dev/null
+	@zip -r $(ZIPFILE) $(RELEASE) 1> /dev/null
 
 
 clean:
