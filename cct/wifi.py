@@ -50,11 +50,11 @@ class Connection:
         wifi = Connection("ssid", "password")
         wifi.connect()
     """
-    def __init__(self, ssid, password):
+    def __init__(self, ssid, password=None):
 
         # check if ssid and password are specified
-        if not ssid or not password:
-            raise Exception('ssid/password are not set')
+        if not ssid:
+            raise Exception('ssid not set')
 
         self.ssid = ssid
         """SSID for connection"""
@@ -69,7 +69,10 @@ class Connection:
         """
         print('connecting to network: %s' % self.ssid)
         self.nic.active(True)
-        self.nic.connect(self.ssid, self.password)
+        if self.password is not None:
+            self.nic.connect(self.ssid, self.password)
+        else:
+            self.nic.connect(self.ssid)
 
         attempt = 0
         while attempt < 30 and not self.nic.isconnected():
