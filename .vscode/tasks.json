@@ -6,7 +6,7 @@
         {
           "label": "Deploy updates to ESP32",
           "type": "shell",
-          "command": "rshell -p ${input:comPort} rsync board /pyboard",
+          "command": "rshell -p COM3 rsync board /pyboard",
           "group": {
               "kind": "build",
               "isDefault": true
@@ -14,37 +14,41 @@
           "presentation": {
               "reveal": "always",
               "panel": "new"
-          }
+          },
+          "problemMatcher": []
         },
         {
           "label": "List ESP32 files",
           "type": "shell",
-          "command": "rshell -p ${input:comPort} ls /pyboard",
+          "command": "rshell -p COM3 ls /pyboard",
           "group": "build",
           "presentation": {
               "reveal": "always",
               "panel": "new"
-          }
+          },
+          "problemMatcher": []
         },
         {
           "label": "Open shell prompt on ESP32",
           "type": "shell",
-          "command": "rshell -p ${input:comPort} repl",
+          "command": "rshell -p COM3 repl",
           "group": "build",
           "presentation": {
               "reveal": "always",
               "panel": "new"
-          }
+          },
+          "problemMatcher": []
         },
         {
           "label": "Flash initial firmware (caution - erases files!)",
           "type": "shell",
-          "command": "esptool.py --chip esp32 --port ${input:comPort} erase_flash && esptool.py --chip esp32 --port ${input:comPort} write_flash -z 0x1000 firmware/esp32.bin",
+          "command": "esptool.py --chip esp32 --port COM3 erase_flash && esptool.py --chip esp32 --port COM3 write_flash -z 0x1000 firmware/esp32.bin",
           "group": "build",
           "presentation": {
               "reveal": "always",
               "panel": "new"
-          }
+          },
+          "problemMatcher": []
         },
         {
             "label": "pylint all: reveal code problems",
@@ -71,13 +75,5 @@
                 }
             }
         }
-    ],
-	  "inputs": [
-		{
-		  "id": "comPort",
-		  "type": "promptString",
-      "description": "ESP32 COM Port (try COM3)",
-      "password": false
-		}
-	  ]
+    ]
 }
