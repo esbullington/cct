@@ -1,34 +1,33 @@
 # detailed comments for teaching
 
 # these are esp32 system libraries we'll need
+
+# this is a technical requirement for esp32
 import gc
-import usys
+
+# we'll need the wifi connection module
+from cct.wifi import Connection
 
 # we'll need the Firebase module to connect to database
 from cct.google.ufirebase import Firebase
 
-# we have a special module for configuration
-from cct.config import Config
-
 # enable garbage collection
 gc.enable()
 
-# load the config file, check it to be sure you have appropriate settings
-# for your Firebase database and wifi network
-config = Config("main.conf")
+wifi = Connection(("ssid", "password")
+wifi.connect()
 
-## if we"re running on esp32 (not desktop), then start up the wifi
-if usys.platform == "esp32":
-    from cct.wifi import Connection
-    wifi = Connection(config.get("ssid"), config.get("password"))
-    wifi.connect()
+# variables needed to authenticate/initialize Firebase database
+email = "google_service_account_id@someaccount.iam.gserviceaccount.com"
+db = "firebase_database_name4243243-db"
+keyfile = "key.json"
 
-# initialize Firebase database
-email = config.get("google_service_account_email")
-db = config.get("firebase_database")
-keyfile = config.get("google_keyfile")
-
-# authenticate
+# authenticate/initialize database
 fb = Firebase(db, email, keyfile)
 
 # at this point, you can read and write to database
+# writing
+fb.put("yourkey", "somevalue")
+
+# reading
+v = fb.get("yourkey") # now v is equal to "somevalue"
