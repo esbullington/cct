@@ -14,7 +14,8 @@
           "presentation": {
               "reveal": "always",
               "panel": "new"
-          }
+          },
+          "problemMatcher": []
         },
         {
           "label": "Deploy updates to ESP32 (only main.py - fast)",
@@ -27,7 +28,8 @@
           "presentation": {
               "reveal": "always",
               "panel": "new"
-          }
+          },
+          "problemMatcher": []
         },
         {
           "label": "List ESP32 files",
@@ -37,7 +39,8 @@
           "presentation": {
               "reveal": "always",
               "panel": "new"
-          }
+          },
+          "problemMatcher": []
         },
         {
           "label": "Open shell prompt on ESP32",
@@ -47,7 +50,8 @@
           "presentation": {
               "reveal": "always",
               "panel": "new"
-          }
+          },
+          "problemMatcher": []
         },
         {
           "label": "Flash initial firmware (caution - erases files!)",
@@ -57,7 +61,8 @@
           "presentation": {
               "reveal": "always",
               "panel": "new"
-          }
+          },
+          "problemMatcher": []
         },
         {
             "label": "pylint all: reveal code problems",
