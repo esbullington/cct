@@ -12,6 +12,7 @@
               "isDefault": true
           },
           "presentation": {
+              "focus": true,
               "reveal": "always",
               "panel": "new"
           },
@@ -26,6 +27,7 @@
               "isDefault": true
           },
           "presentation": {
+              "focus": true,
               "reveal": "always",
               "panel": "new"
           },
@@ -37,6 +39,7 @@
           "command": "rshell -p ${input:comPort} ls /pyboard",
           "group": "build",
           "presentation": {
+              "focus": true,
               "reveal": "always",
               "panel": "new"
           },
@@ -48,6 +51,7 @@
           "command": "rshell -p ${input:comPort} repl",
           "group": "build",
           "presentation": {
+              "focus": true,
               "reveal": "always",
               "panel": "new"
           },
@@ -59,6 +63,7 @@
           "command": "esptool.py --chip esp32 --port ${input:comPort} erase_flash; esptool.py --chip esp32 --port ${input:comPort} write_flash -z 0x1000 firmware/esp32.bin",
           "group": "build",
           "presentation": {
+              "focus": true,
               "reveal": "always",
               "panel": "new"
           },
@@ -70,6 +75,7 @@
             "type": "shell",
             "command": "py -m pylint --msg-template '{path}:{line}:{column}:{category}:{symbol} - {msg}' src",
             "presentation": {
+                "focus": true,
                 "reveal": "never",
                 "panel": "shared"
             },
