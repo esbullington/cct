@@ -22,6 +22,7 @@ Set-ExecutionPolicy Bypass -Scope Process
 - Then, using the `file` menu, or the open folder icon, navigate to the unzipped zip file, then to the `tools` subfolder
 - Double-click on the `install.ps1` file
 - Now, click the "run script" button (green play icon) to run the script and install project environment
+- Close Powershell ISE
 
 #### Setting up Visual Studio Code
 
