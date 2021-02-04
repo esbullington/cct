@@ -4,9 +4,22 @@
     "version": "2.0.0",
       "tasks": [
         {
-          "label": "Deploy updates to ESP32",
+          "label": "Deploy updates to ESP32 (all files)",
           "type": "shell",
           "command": "rshell -p ${input:comPort} rsync board /pyboard",
+          "group": {
+              "kind": "build",
+              "isDefault": true
+          },
+          "presentation": {
+              "reveal": "always",
+              "panel": "new"
+          }
+        },
+        {
+          "label": "Deploy updates to ESP32 (only main.py - fast)",
+          "type": "shell",
+          "command": "rshell -p ${input:comPort} cp board/main.py /pyboard/main.py",
           "group": {
               "kind": "build",
               "isDefault": true
