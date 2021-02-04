@@ -51,11 +51,19 @@ In order to run Python code on the ESP32, we first we have to flash the device w
 
 ### Running code on the ESP32
 
-To run Python on the ESP32 environment, you have two choices: you can either do your development on Windows, and then copy the files onto the ESP32, or you can edit the files directly on the device (there's actually an intermediate file created, but it will seem as though you're working directly on the device).
+To run Python on the ESP32 environment, you have two choices: you can either do your development on Windows, and then copy the files onto the ESP32, or you can edit the files directly on the device (there's actually an intermediate file created, but it will seem as though you're working directly on the device). But first, you have to do an initial deployment of the library files we'll use:
+
+#### Deploying library code
+
+Under the `terminal` menu, select `Run task` just as you did above when flashing the ESP32, but this time, select `Deploy updates to ESP32 (All files)`. This option deploys the Micropython library we'll be using to connect to wifi, write to a remote Firebase database, and interact with the Bluetooth device from our downloaded, unzipped code folder, to the ESP32. **This will take a while to deploy (5-10 minutes)**. Once that's done,  you can proceed to either interacting with the ESP32 using the prompt (REPL), or editing and deploying your code to the device.
+
+#### Micropython REPL Prompt
+
+<todo>
 
 #### Editing code on Windows
 
-Edit code in Visual Studio Code just as you would in any other editor. When you're ready to run the code:
+Edit code in Visual Studio Code just as you would in any other editor. You will do your work in the `main.py` file under the `board` directory. When you're ready to run the code:
 
 - Under the `Terminal` top menu, select `Run Task`
 - Under `Run Task`, select `Deploy Updates to ESP32`
