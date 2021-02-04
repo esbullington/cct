@@ -14,7 +14,7 @@ from cct.google.ufirebase import Firebase
 # enable garbage collection
 gc.enable()
 
-wifi = Connection(("ssid", "password")
+wifi = Connection("ssid", "password")
 wifi.connect()
 
 # variables needed to authenticate/initialize Firebase database
