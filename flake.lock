@@ -48,25 +48,22 @@
       },
       "original": {
         "owner": "nix-resources",
-        "ref": "master",
         "repo": "mach-nix",
         "type": "github"
       }
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1613226215,
-        "narHash": "sha256-3rA5cGIrBHD6yeKhNhsF7/t461ww25oJY8KyBb0IhjU=",
-        "owner": "nix-resources",
+        "lastModified": 1613103320,
+        "narHash": "sha256-QO52M2/8DmkGXW650YyBr+RccvkdCnJFGu/wA7ubQhs=",
+        "owner": "esbullington",
         "repo": "nixpkgs",
-        "rev": "ff96a0fa5635770390b184ae74debea75c3fd534",
+        "rev": "21a675946347bca090e2e68bfb5b1677b6113cb2",
         "type": "github"
       },
       "original": {
-        "owner": "nix-resources",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
+        "id": "nixpkgs",
+        "type": "indirect"
       }
     },
     "pypi-deps-db": {

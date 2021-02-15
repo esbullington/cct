@@ -1,18 +1,24 @@
-{ pkgs, ... }:
+# shell.nix
+
+{ mach-nix, nixpkgs ? (import <nixpkgs> { })}:
+
+with nixpkgs;
 
 let
-  mach-nix = import (builtins.fetchGit {
-    url = "https://github.com/nix-resources/mach-nix/";
-    # ref = "refs/tags/3.1.1";
-		rev = "01c3ff9b74d4ad10edaad56b8b34c4043af71df9";
-		# rev = "d37c1eb362ee716f952884367159cab4e0b3b9e2";
-  }) { currentSystem = "x86_64-linux"; };
-  python = "python38";
-  customPython = mach-nix.mkPythonShell {
-    requirements = builtins.readFile ./requirements.txt;
+  myEnv = mach-nix.mkPythonShell {
+    requirements = ''
+      numpydoc
+      pylint
+      sphinx
+      sphinx-rtd-theme
+      sphinx-autodoc-typehints
+      watchdog
+      PyYAML
+      argh
+      rsa
+      esptool
+      rshell
+      adafruit-ampy
+      '';
   };
-in
-
-pkgs.mkShell {
-  buildInputs = [ customPython ];
-}
+in myEnv

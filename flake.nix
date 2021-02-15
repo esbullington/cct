@@ -1,21 +1,15 @@
+# flake.nix
 {
-  description = "my project description";
-
-  inputs.nixpkgs.url = "github:nix-resources/nixpkgs/nixos-unstable";
-
-  inputs.mach-nix = {
-			url = "github:nix-resources/mach-nix/master";
-			inputs.nixpkgs.follows = "nixpkgs";
-	};
-
+  description = "...";
+  
   inputs.flake-utils.url = "github:nix-resources/flake-utils";
+  inputs.mach-nix.url = "github:nix-resources/mach-nix";
+  inputs.mach-nix.inputs.nixpkgs.follows = "nixpkgs";
 
-  outputs = { self, nixpkgs, mach-nix, flake-utils }:
-    flake-utils.lib.eachDefaultSystem
-      (system:
-        let pkgs = nixpkgs.legacyPackages.${system}; in
-        {
-          devShell = import ./shell.nix { inherit pkgs mach-nix; };
-        }
-      );
+  outputs = { self, nixpkgs, flake-utils, mach-nix }: (flake-utils.lib.eachDefaultSystem (system:
+  let
+    pkgs = import nixpkgs { inherit system; };
+  in {
+    devShell = (import ./shell.nix { nixpkgs=pkgs; mach-nix=mach-nix.lib.${system}; });
+  }));
 }
