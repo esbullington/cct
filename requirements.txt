@@ -1,8 +1,12 @@
-numpydoc==1.1.0
-pylint==2.6.0
-sphinx==3.4.3
-sphinx-rtd-theme==0.5.1
-sphinx-autodoc-typehints==1.11.1
-watchdog==1.0.2
-PyYAML==5.4.1
-argh==0.26.2
+# numpydoc==1.1.0
+# pylint==2.6.0
+# sphinx==3.4.3
+# sphinx-rtd-theme==0.5.1
+# sphinx-autodoc-typehints==1.11.1
+# watchdog==1.0.2
+# PyYAML==5.4.1
+# argh==0.26.2
+rsa==4.7
+esptool==3.0
+rshell==0.0.28
+adafruit-ampy==1.1.0
