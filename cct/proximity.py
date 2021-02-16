@@ -1,6 +1,7 @@
 from micropython import const
 from ubluetooth import BLE
 import ubinascii
+import network
 
 _IRQ_CENTRAL_CONNECT = const(1)
 _IRQ_CENTRAL_DISCONNECT = const(2)
@@ -22,9 +23,10 @@ _IRQ_GATTC_WRITE_DONE = const(17)
 _IRQ_GATTC_NOTIFY = const(18)
 _IRQ_GATTC_INDICATE = const(19)
 
-def memoryview_addr_to_str(addr):
-    ubinascii.hexlify(bytes(addr), ":")
-   
+
+def memoryview_addr_to_str(data):
+    ubinascii.hexlify(bytes(data), ":")
+
 def memoryview_data_to_str(data):
     ubinascii.hexlify(bytes(data))
 
@@ -35,10 +37,10 @@ def _handle_coro(search_event, threshold, callback):
             print("***********************")
             print("Scan result received...")
             addr_type, addr, adv_type, rssi, adv_data = data
-            print("Addr : {}".format(memoryview_addr_to_str(addr)))
+            print("Addr : {}".format(bytes(addr)))
             print("Rssi : {}".format(rssi))
             print("Threshold : {}".format(threshold))
-            print("Adv data : {}".format(memoryview_data_to_str(adv_data)))
+            print("Adv data : {}".format(bytes(adv_data)))
             if rssi > threshold and callback is not None:
                 print("...and signal scanned is greater than threshold, calling callback function with detected MAC address.")
                 callback(addr)
@@ -63,7 +65,15 @@ class Proximity:
         self._threshold = -50
         self._callback = None
         self.bt = BLE()
-        self.bt.active(True)
+        self.activate_bluetooth()
+
+    def activate_bluetooth(self):
+        # have to first activate wlan before bt due to bug:
+        # https://github.com/micropython/micropython/issues/6423
+        if not self.bt.active():
+            wlan = network.WLAN(network.STA_IF)
+            wlan.active(True)
+            self.bt.active(True)
 
     @property
     def threshold(self):
@@ -98,6 +108,7 @@ class Proximity:
         """
         Start proximity detection (start observing *other* bluetooth devices)
         """
+        self.activate_bluetooth()
         if self._coroutine is None:
             print("Alert: callback is not set, please set callback before starting to scan")
         else:
@@ -114,7 +125,8 @@ class Proximity:
         """
         Start advertising device signal (start signaling *to* other bluetooth devices)
         """
-        self.bt.gap_advertise(1000, adv_data="cct", connectable=False)
+        self.activate_bluetooth()
+        self.bt.gap_advertise(1000, adv_data="cct-dyw", connectable=False)
 
     def stop_advertising(self):
         """
@@ -131,5 +143,5 @@ class Proximity:
         """
         return ubinascii.hexlify(self.bt.config("mac")[1], ":")
 
-    def quit(self):
+    def deactivate(self):
         self.bt.active(False)

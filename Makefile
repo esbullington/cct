@@ -1,5 +1,5 @@
 
-VERSION=0.2.9
+VERSION=0.2.10
 RELEASE=cct-release-$(VERSION)
 ZIPFILE=$(RELEASE).zip
 
@@ -15,7 +15,7 @@ DOCSBUILDDIR      = docs/build
 
 
 # esp32
-FIRMWARE = esp32-idf3-20210121-unstable-v1.13-274-g49dd9ba1a.bin
+FIRMWARE = esp32-idf3-20210202-v1.14.bin
 
 
 .PHONY: gh-pages package clean help Makefile write_flash erase_flash
@@ -34,7 +34,9 @@ prebuild:
 	mkdir -p $(RELEASE)/firmware
 	mkdir -p $(RELEASE)/board
 	cp README.md $(RELEASE)
-	cp -r cct $(RELEASE)/board/
+	cp -r cct tempcct
+	rm tempcct/google/rsa/LICENSE
+	mv tempcct ${RELEASE}/board/cct
 	cp -r tools $(RELEASE)/
 	cp -r .vscode $(RELEASE)/
 	cp .pylintrc $(RELEASE)/.pylintrc
