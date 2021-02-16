@@ -4,7 +4,7 @@
 with pkgs;
 
 let
-  myEnv = mach-nix.mkPythonShell {
+  myEnv = mach-nix.mkPython {
     requirements = ''
       numpydoc
       pylint
@@ -20,13 +20,10 @@ let
       adafruit-ampy
       '';
   };
-in mkShell {
-
-  name = "cct-environment";
-
+in pkgs.mkShell {
+  name = "cct-env";
   buildInputs = [
-    myEnv
     pkgs.zip
+    myEnv
   ];
-
 }
