@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>cct package &mdash; cct 0.2.0 documentation</title>
+  <title>cct package &mdash; cct 0.2.11 documentation</title>
   
 
   
@@ -16,10 +16,7 @@
 
   
   
-
   
-  
-
   
 
   
@@ -32,6 +29,7 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -52,7 +50,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> cct
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> cct
           
 
           
@@ -62,7 +60,7 @@
             
             
               <div class="version">
-                0.2
+                0.2.
               </div>
             
           
@@ -134,8 +132,6 @@
 
 
 
-
-
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -147,7 +143,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-          
+            
             <a href="_sources/cct.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -171,46 +167,115 @@
 <dd><p>Detects device proximity using Bluetooth LE</p>
 <p>Example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">cct.proximity</span> <span class="kn">import</span> <span class="n">Proximity</span>
+<span class="c1"># scanning example, see example.py for advertising</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">Proximity</span><span class="p">()</span>
+<span class="c1"># activate bluetooth</span>
+<span class="n">p</span><span class="o">.</span><span class="n">activate</span><span class="p">()</span>
+<span class="c1"># get bt mac address</span>
+<span class="n">mac</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">bluetooth_mac_address</span>
+<span class="c1"># set threshold</span>
+<span class="n">p</span><span class="o">.</span><span class="n">threshold</span> <span class="o">=</span> <span class="o">-</span><span class="mi">100</span>
+<span class="c1"># set your callback function (see example.py)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">callback</span> <span class="o">=</span> <span class="n">your_predefined_callback</span>
+<span class="n">p</span><span class="o">.</span><span class="n">start_scanning</span><span class="p">()</span>
+<span class="c1"># when you&#39;re done</span>
+<span class="n">p</span><span class="o">.</span><span class="n">stop_scanning</span><span class="p">()</span>
+<span class="n">p</span><span class="o">.</span><span class="n">deactivate</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Initializes the proximity detecter</p>
+<dl class="py method">
+<dt id="cct.proximity.Proximity.activate">
+<code class="sig-name descname">activate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cct.proximity.Proximity.activate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cct.proximity.Proximity.bluetooth_mac_address">
+<em class="property">property </em><code class="sig-name descname">bluetooth_mac_address</code><a class="headerlink" href="#cct.proximity.Proximity.bluetooth_mac_address" title="Permalink to this definition">¶</a></dt>
+<dd><p>MAC address hex string</p>
+<p>Property for the MAC address ID for bluetooth device</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>threshold</strong> (<cite>str</cite>) – Threshold for proximity detection strength (default: -50)
-Adjust this threshold to set detect closer (higher) and farther (lower)</p></li>
-<li><p><strong>callback</strong> (<em>(</em><em>event</em><em>, </em><em>data</em><em>) </em><em>-&gt; None</em>) – Function passed to retrieve proximity event and data</p></li>
-</ul>
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><cite>str</cite></p>
 </dd>
 </dl>
-<dl class="py method">
-<dt id="cct.proximity.Proximity.get_own_bluetooth_address">
-<code class="sig-name descname">get_own_bluetooth_address</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cct.proximity.Proximity.get_own_bluetooth_address" title="Permalink to this definition">¶</a></dt>
-<dd><p>Retrieve the MAC address ID for bluetooth device
-:returns: MAC address
-:rtype: <cite>str</cite></p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="cct.proximity.Proximity.start">
-<code class="sig-name descname">start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cct.proximity.Proximity.start" title="Permalink to this definition">¶</a></dt>
-<dd><p>Start proximity detection</p>
+<dt id="cct.proximity.Proximity.callback">
+<em class="property">property </em><code class="sig-name descname">callback</code><a class="headerlink" href="#cct.proximity.Proximity.callback" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cct.proximity.Proximity.deactivate">
+<code class="sig-name descname">deactivate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cct.proximity.Proximity.deactivate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cct.proximity.Proximity.is_active">
+<code class="sig-name descname">is_active</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cct.proximity.Proximity.is_active" title="Permalink to this definition">¶</a></dt>
+<dd><p>Proximity bluetooth active status
+:returns: is active?
+:rtype: bool</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="cct.proximity.Proximity.stop">
-<code class="sig-name descname">stop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cct.proximity.Proximity.stop" title="Permalink to this definition">¶</a></dt>
-<dd><p>Stop proximity detection</p>
+<dt id="cct.proximity.Proximity.start_advertising">
+<code class="sig-name descname">start_advertising</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cct.proximity.Proximity.start_advertising" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start advertising device signal (start signaling <em>to</em> other bluetooth devices)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cct.proximity.Proximity.start_scanning">
+<code class="sig-name descname">start_scanning</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cct.proximity.Proximity.start_scanning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start proximity detection (start observing <em>other</em> bluetooth devices)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cct.proximity.Proximity.stop_advertising">
+<code class="sig-name descname">stop_advertising</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cct.proximity.Proximity.stop_advertising" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop advertising device signal (stop signaling <em>to</em> other bluetooth devices)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cct.proximity.Proximity.stop_scanning">
+<code class="sig-name descname">stop_scanning</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cct.proximity.Proximity.stop_scanning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop proximity detection (stop observing <em>other</em> bluetooth devices)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cct.proximity.Proximity.threshold">
+<em class="property">property </em><code class="sig-name descname">threshold</code><a class="headerlink" href="#cct.proximity.Proximity.threshold" title="Permalink to this definition">¶</a></dt>
+<dd><p>-50)</p>
+<p>Adjust this threshold to set detect closer (higher) and farther (lower)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><cite>number</cite></p>
+</dd>
+<dt class="field-even">Type</dt>
+<dd class="field-even"><p>Threshold for proximity detection strength (default</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
+
+<dl class="py function">
+<dt id="cct.proximity.memoryview_addr_to_str">
+<code class="sig-prename descclassname">cct.proximity.</code><code class="sig-name descname">memoryview_addr_to_str</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cct.proximity.memoryview_addr_to_str" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="cct.proximity.memoryview_data_to_str">
+<code class="sig-prename descclassname">cct.proximity.</code><code class="sig-name descname">memoryview_data_to_str</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cct.proximity.memoryview_data_to_str" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </div>
 <div class="section" id="cct-wifi-module">
 <h2><code class="docutils literal notranslate"><span class="pre">cct.wifi</span></code> module<a class="headerlink" href="#cct-wifi-module" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt id="cct.wifi.Connection">
-<em class="property">class </em><code class="sig-prename descclassname">cct.wifi.</code><code class="sig-name descname">Connection</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ssid</span></em>, <em class="sig-param"><span class="n">password</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cct.wifi.Connection" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">cct.wifi.</code><code class="sig-name descname">Connection</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ssid</span></em>, <em class="sig-param"><span class="n">password</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cct.wifi.Connection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initializes a connection to a WiFi network</p>
 <p>..code-block:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">cct.wifi</span> <span class="kn">import</span> <span class="n">Connection</span>
@@ -428,28 +493,35 @@ A relative or full path to filename can be used</p></li>
            
           </div>
           <footer>
+  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to cct’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to cct’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
     </div>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2020, Eric S Bullington.
+        
+        &copy; Copyright 1980, Eric S Bullington
 
     </p>
   </div>
     
     
     
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
+
         </div>
       </div>
 
