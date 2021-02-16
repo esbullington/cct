@@ -47,3 +47,7 @@ p.start_scanning()
 p.stop_scanning()
 p.deactivate()
 
+# to advertise
+p.start_advertising()
+# to stop advertising
+p.stop_advertising()

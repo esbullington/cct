@@ -56,6 +56,20 @@ class Proximity:
     .. code-block::
 
         from cct.proximity import Proximity
+        # scanning example, see example.py for advertising
+        p = Proximity()
+        # activate bluetooth
+        p.activate()
+        # get bt mac address
+        mac = p.bluetooth_mac_address
+        # set threshold
+        p.threshold = -100
+        # set your callback function (see example.py)
+        p.callback = your_predefined_callback
+        p.start_scanning()
+        # when you're done
+        p.stop_scanning()
+        p.deactivate()
     """
 
     def __init__(self, threshold=None, callback=None):
@@ -65,15 +79,18 @@ class Proximity:
         self._threshold = -50
         self._callback = None
         self.bt = BLE()
-        self.activate_bluetooth()
 
-    def activate_bluetooth(self):
+    def _activate_bluetooth(self):
         # have to first activate wlan before bt due to bug:
         # https://github.com/micropython/micropython/issues/6423
         if not self.bt.active():
+            print("Activating bluetooth...")
             wlan = network.WLAN(network.STA_IF)
             wlan.active(True)
             self.bt.active(True)
+
+    def activate(self):
+        self._activate_bluetooth()
 
     @property
     def threshold(self):
@@ -104,11 +121,21 @@ class Proximity:
     def _handle_irq(self, event, data):
         self._coroutine.send((event, data))
 
+    def is_active(self):
+        """
+        Proximity bluetooth active status
+        ret:
+            `bool`: is active?
+        """
+        return self.bt.active()
+
     def start_scanning(self):
         """
         Start proximity detection (start observing *other* bluetooth devices)
         """
-        self.activate_bluetooth()
+        if not self.is_active():
+            print("Bluetooth must be active before scanning")
+            return False
         if self._coroutine is None:
             print("Alert: callback is not set, please set callback before starting to scan")
         else:
@@ -125,7 +152,6 @@ class Proximity:
         """
         Start advertising device signal (start signaling *to* other bluetooth devices)
         """
-        self.activate_bluetooth()
         self.bt.gap_advertise(1000, adv_data="cct-dyw", connectable=False)
 
     def stop_advertising(self):

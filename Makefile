@@ -21,6 +21,12 @@ FIRMWARE = esp32-idf3-20210202-v1.14.bin
 .PHONY: gh-pages package clean help Makefile write_flash erase_flash
 
 
+repl:
+	rshell -p /dev/ttyUSB0 repl
+
+sync_files:
+	rshell -p /dev/ttyUSB0 rsync ${RELEASE}/board /pyboard
+
 write_flash:
 	esptool.py --chip esp32 --port /dev/ttyUSB0 write_flash -z 0x1000 firmware/$(FIRMWARE)
 
