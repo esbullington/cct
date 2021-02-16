@@ -23,10 +23,10 @@ _IRQ_GATTC_NOTIFY = const(18)
 _IRQ_GATTC_INDICATE = const(19)
 
 def memoryview_addr_to_str(addr):
-    bytes(addr)
+    ubinascii.hexlify(bytes(addr), ":")
    
 def memoryview_data_to_str(data):
-    bytes(data)
+    ubinascii.hexlify(bytes(data))
 
 def _handle_coro(search_event, threshold, callback):
     while True:
@@ -40,7 +40,7 @@ def _handle_coro(search_event, threshold, callback):
             print("Threshold : {}".format(threshold))
             print("Adv data : {}".format(memoryview_data_to_str(adv_data)))
             if rssi > threshold and callback is not None:
-                print("...and signal scanned > threshold, so calling callback function with detected MAC address.")
+                print("...and signal scanned is greater than threshold, calling callback function with detected MAC address.")
                 callback(addr)
 
 
