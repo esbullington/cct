@@ -124,8 +124,8 @@ class Proximity:
     def is_active(self):
         """
         Proximity bluetooth active status
-        ret:
-            `bool`: is active?
+        Returns:
+            bool: is active?
         """
         return self.bt.active()
 
