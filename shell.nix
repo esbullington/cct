@@ -1,8 +1,7 @@
 # shell.nix
+{ mach-nix, pkgs, ... }:
 
-{ mach-nix, nixpkgs ? (import <nixpkgs> { })}:
-
-with nixpkgs;
+with pkgs;
 
 let
   myEnv = mach-nix.mkPythonShell {
@@ -21,4 +20,13 @@ let
       adafruit-ampy
       '';
   };
-in myEnv
+in mkShell {
+
+  name = "cct-environment";
+
+  buildInputs = [
+    myEnv
+    pkgs.zip
+  ];
+
+}

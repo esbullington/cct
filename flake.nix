@@ -10,6 +10,6 @@
   let
     pkgs = import nixpkgs { inherit system; };
   in {
-    devShell = (import ./shell.nix { nixpkgs=pkgs; mach-nix=mach-nix.lib.${system}; });
+    devShell = (import ./shell.nix { pkgs=pkgs; mach-nix=mach-nix.lib.${system}; });
   }));
 }
