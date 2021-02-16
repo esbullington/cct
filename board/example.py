@@ -31,3 +31,19 @@ fb.put("yourkey", "somevalue")
 
 # reading
 v = fb.get("yourkey") # now v is equal to "somevalue"
+
+
+def callback_function(addr):
+    # here you can do whatever you need with the scanned MAC address
+    print("CALLING BACK")
+
+# proximity detection via bluetooth
+from cct.proximity import Proximity
+p = Proximity()
+p.callback = callback_function
+p.start_scanning()
+
+# when you're done
+p.stop_scanning()
+p.deactivate()
+
