@@ -15,7 +15,7 @@ DOCSBUILDDIR      = docs/build
 
 
 # esp32
-FIRMWARE = esp32-idf3-20200902-v1.13.bin
+FIRMWARE = esp32-idf3-20210206-unstable-v1.14-9-g9dedcf122.bin
 
 
 .PHONY: gh-pages package clean help Makefile write_flash erase_flash
