@@ -106,7 +106,7 @@ class Proximity:
         """
         Initializes the proximity detecter
         """
-        self._threshold = -50
+        self._threshold = -100
         self.interval = 5
         self._callback = None
         self.bt = BLE()
