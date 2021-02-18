@@ -1,7 +1,10 @@
 from micropython import const
 from ubluetooth import BLE
+import ubluetooth
 import ubinascii
 import network
+import struct
+
 
 _IRQ_CENTRAL_CONNECT = const(1)
 _IRQ_CENTRAL_DISCONNECT = const(2)
@@ -23,27 +26,54 @@ _IRQ_GATTC_WRITE_DONE = const(17)
 _IRQ_GATTC_NOTIFY = const(18)
 _IRQ_GATTC_INDICATE = const(19)
 
+# Advertising payloads are repeated packets of the following form:
+#   1 byte data length (N + 1)
+#   1 byte type (see constants below)
+#   N bytes type-specific data
 
-def memoryview_addr_to_str(data):
-    ubinascii.hexlify(bytes(data), ":")
+_ADV_TYPE_FLAGS = const(0x01)
+_ADV_TYPE_NAME = const(0x09)
+_ADV_TYPE_UUID16_COMPLETE = const(0x3)
+_ADV_TYPE_UUID32_COMPLETE = const(0x5)
+_ADV_TYPE_UUID128_COMPLETE = const(0x7)
+_ADV_TYPE_UUID16_MORE = const(0x2)
+_ADV_TYPE_UUID32_MORE = const(0x4)
+_ADV_TYPE_UUID128_MORE = const(0x6)
+_ADV_TYPE_APPEARANCE = const(0x19)
 
-def memoryview_data_to_str(data):
-    ubinascii.hexlify(bytes(data))
+
+def decode_field(payload, adv_type):
+    i = 0
+    result = []
+    while i + 1 < len(payload):
+        if payload[i + 1] == adv_type:
+            result.append(payload[i + 2:i + payload[i] + 1])
+        i += 1 + payload[i]
+    return result
+
+def decode_name(payload):
+    n = decode_field(payload, _ADV_TYPE_NAME)
+    return str(n[0], "utf-8") if n else ""
+
+def adv_encode(adv_type, value):
+    return bytes((len(value) + 1, adv_type,)) + value
+
+def adv_encode_name(name):
+    return adv_encode(const(0x09), name.encode())
 
 def _handle_coro(search_event, threshold, callback):
     while True:
         (event, data) = (yield)
         if event == search_event:
-            print("***********************")
-            print("Scan result received...")
+            print("New scan result received...")
             addr_type, addr, adv_type, rssi, adv_data = data
-            print("Addr : {}".format(bytes(addr)))
-            print("Rssi : {}".format(rssi))
-            print("Threshold : {}".format(threshold))
-            print("Adv data : {}".format(bytes(adv_data)))
-            if rssi > threshold and callback is not None:
-                print("...and signal scanned is greater than threshold, calling callback function with detected MAC address.")
-                callback(addr)
+            address = str(ubinascii.hexlify(addr, ":"))
+            data_tag = decode_name(adv_data)
+            print("Address: {}".format(address))
+            print("Signal strength: {}".format(rssi))
+            print("Tag: {}".format(data_tag))
+            if rssi > threshold and callback is not None and data_tag == "cct-dyw":
+                callback(address)
 
 
 class Proximity:
@@ -77,6 +107,7 @@ class Proximity:
         Initializes the proximity detecter
         """
         self._threshold = -50
+        self.interval = 5
         self._callback = None
         self.bt = BLE()
 
@@ -104,6 +135,19 @@ class Proximity:
     @threshold.setter
     def threshold(self, threshold):
         self._threshold = threshold
+
+    @property
+    def interval(self):
+        """
+        `number`: Scan interval in seconds (default: 10s)
+
+        Adjust this interval between scans
+        """
+        return self._interval
+
+    @interval.setter
+    def interval(self, interval):
+        self._interval = interval
 
     @property
     def callback(self):
@@ -140,7 +184,7 @@ class Proximity:
             print("Alert: callback is not set, please set callback before starting to scan")
         else:
             self.bt.irq(self._handle_irq)
-            self.bt.gap_scan()
+            self.bt.gap_scan(0, self.interval * 1000000, 100000)
 
     def stop_scanning(self):
         """
@@ -152,7 +196,7 @@ class Proximity:
         """
         Start advertising device signal (start signaling *to* other bluetooth devices)
         """
-        self.bt.gap_advertise(1000, adv_data="cct-dyw", connectable=False)
+        self.bt.gap_advertise(100000, adv_data=adv_encode_name("cct-dyw"), connectable=False)
 
     def stop_advertising(self):
         """
