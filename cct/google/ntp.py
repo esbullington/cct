@@ -18,7 +18,7 @@ def time(host='pool.ntp.org', port=123):
     recipient = socket.getaddrinfo(host, port)[0][-1]
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     try:
-        s.settimeout(1)
+        s.settimeout(10)
         s.sendto(ntp_query, recipient)
         msg = s.recv(48)
     finally:
