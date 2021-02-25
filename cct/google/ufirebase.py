@@ -26,7 +26,7 @@ class Firebase:
         firebase.get('name') # returns 'Joe Q Public'
     """
 
-    def __init__(self, database, email, keyfile):
+    def __init__(self, database, email, keyfile=None):
         """
         Initializes the Firebase database
 
@@ -42,15 +42,18 @@ class Firebase:
 
         """
         print("Authenticating to Firebase database...")
-        loaded_key = LoadKey(keyfile)
-        sa = ServiceAccount()
-        sa.scope([auth.SCOPE_USERINFO_EMAIL, auth.SCOPE_FIREBASE_DATABASE])
-        sa.private_rsa_key(loaded_key.key)
-        sa.email(email)
-        self._token = sa.token()
-        self.email = email
+        if keyfile is not None:
+            loaded_key = LoadKey(keyfile)
+            sa = ServiceAccount()
+            sa.scope([auth.SCOPE_USERINFO_EMAIL, auth.SCOPE_FIREBASE_DATABASE])
+            sa.private_rsa_key(loaded_key.key)
+            sa.email(email)
+            self._token = sa.token()
+        else:
+            self._token = None
+        self._email = email
         """email (`str`): Email for authenticated service account."""
-        self.database = database
+        self._database = database
         """database (`str`): Firebase database name."""
 
     def get(self, key):
@@ -62,7 +65,10 @@ class Firebase:
         Returns:
             `any`: Retrieved  key
         """
-        url = "https://{}.firebaseio.com/{}.json?access_token={}".format(self.database, key, self._token)
+        if self._token is None:
+            url = "https://{}.firebaseio.com/{}.json".format(self._database, key)
+        else:
+            url = "https://{}.firebaseio.com/{}.json?access_token={}".format(self._database, key, self._token)
         resp = requests.get(url)
         return resp.json()
 
@@ -73,7 +79,10 @@ class Firebase:
         Args:
             key (`str`): Search key value
         """
-        url = "https://{}.firebaseio.com/{}.json?access_token={}".format(self.database, key, self._token)
+        if self._token is None:
+            url = "https://{}.firebaseio.com/{}.json".format(self._database, key)
+        else:
+            url = "https://{}.firebaseio.com/{}.json?access_token={}".format(self._database, key, self._token)
         resp = requests.delete(url)
         return resp.json()
 
@@ -85,7 +94,10 @@ class Firebase:
             key (`str`): Search key value
             value (`any`): Value to write to the database
         """
-        url = "https://{}.firebaseio.com/{}.json?access_token={}".format(self.database, key, self._token)
+        if self._token is None:
+            url = "https://{}.firebaseio.com/{}.json".format(self._database, key)
+        else:
+            url = "https://{}.firebaseio.com/{}.json?access_token={}".format(self._database, key, self._token)
         data = json.dumps(value)
         resp = requests.put(url, data=data)
         return resp.json()
@@ -98,7 +110,10 @@ class Firebase:
             key (`str`): Search key value
             value (`any`): Value to modify in the database
         """
-        url = "https://{}.firebaseio.com/{}.json?access_token={}".format(self.database, key, self._token)
+        if self._token is None:
+            url = "https://{}.firebaseio.com/{}.json".format(self._database, key)
+        else:
+            url = "https://{}.firebaseio.com/{}.json?access_token={}".format(self._database, key, self._token)
         data = json.dumps(value)
         resp = requests.patch(url, data=data)
         return resp.json()
@@ -111,7 +126,10 @@ class Firebase:
             key (`str`): Search key value
             value (`any`): Value to add to existing list
         """
-        url = "https://{}.firebaseio.com/{}.json?access_token={}".format(self.database, key, self._token)
+        if self._token is None:
+            url = "https://{}.firebaseio.com/{}.json".format(self._database, key)
+        else:
+            url = "https://{}.firebaseio.com/{}.json?access_token={}".format(self._database, key, self._token)
         data = json.dumps(value)
         resp = requests.post(url, data=data)
         return resp.json()
@@ -135,7 +153,10 @@ class Firebase:
         Returns:
             `[any]`: List retrived from database
         """
-        url = "https://{}.firebaseio.com/{}.json?access_token={}".format(self.database, key, self._token)
+        if self._token is None:
+            url = "https://{}.firebaseio.com/{}.json".format(self._database, key)
+        else:
+            url = "https://{}.firebaseio.com/{}.json?access_token={}".format(self._database, key, self._token)
         resp = requests.get(url)
         d = resp.json()
         try:
