@@ -67,7 +67,7 @@ def _handle_coro(search_event, threshold, callback):
     while True:
         (event, data) = (yield)
         if event == search_event:
-            print("New Bluetooth device scanned...")
+            print("New BT device scanned...")
             addr_type, addr, adv_type, rssi, adv_data = data
             address = str(ubinascii.hexlify(addr, ":"), "utf-8")
             data_tag = decode_name(adv_data)
@@ -212,7 +212,8 @@ class Proximity:
 
         Property for the MAC address ID for bluetooth device
         """
-        return ubinascii.hexlify(self.bt.config("mac")[1], ":")
+        u = ubinascii.hexlify(self.bt.config("mac")[1], ":")
+        return str(u, "utf-8")
 
     def deactivate(self):
         self.bt.active(False)
