@@ -4,6 +4,7 @@ __pycache__/
 *$py.class
 _build
 .direnv
+.secrets
 
 main.conf
 
