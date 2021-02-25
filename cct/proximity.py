@@ -41,6 +41,8 @@ _ADV_TYPE_UUID32_MORE = const(0x4)
 _ADV_TYPE_UUID128_MORE = const(0x6)
 _ADV_TYPE_APPEARANCE = const(0x19)
 
+_CCT_DATA_TAG = "cct-dyw"
+
 
 def decode_field(payload, adv_type):
     i = 0
@@ -65,14 +67,13 @@ def _handle_coro(search_event, threshold, callback):
     while True:
         (event, data) = (yield)
         if event == search_event:
-            print("New scan result received...")
+            print("New Bluetooth device scanned...")
             addr_type, addr, adv_type, rssi, adv_data = data
             address = str(ubinascii.hexlify(addr, ":"))
             data_tag = decode_name(adv_data)
-            print("Address: {}".format(address))
             print("Signal strength: {}".format(rssi))
-            print("Tag: {}".format(data_tag))
-            if rssi > threshold and callback is not None and data_tag == "cct-dyw":
+            if rssi > threshold and callback is not None and data_tag == _CCT_DATA_TAG:
+                print("CCT Bluetooth device scanned...")
                 callback(address)
 
 
@@ -107,7 +108,7 @@ class Proximity:
         Initializes the proximity detecter
         """
         self._threshold = -100
-        self.interval = 5
+        self.interval = 10
         self._callback = None
         self.bt = BLE()
 
@@ -196,7 +197,7 @@ class Proximity:
         """
         Start advertising device signal (start signaling *to* other bluetooth devices)
         """
-        self.bt.gap_advertise(100000, adv_data=adv_encode_name("cct-dyw"), connectable=False)
+        self.bt.gap_advertise(100000, adv_data=adv_encode_name(_CCT_DATA_TAG), connectable=False)
 
     def stop_advertising(self):
         """
