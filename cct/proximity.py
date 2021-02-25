@@ -69,7 +69,7 @@ def _handle_coro(search_event, threshold, callback):
         if event == search_event:
             print("New Bluetooth device scanned...")
             addr_type, addr, adv_type, rssi, adv_data = data
-            address = str(ubinascii.hexlify(addr, ":"))
+            address = str(ubinascii.hexlify(addr, ":"), "utf-8")
             data_tag = decode_name(adv_data)
             print("Signal strength: {}".format(rssi))
             if rssi > threshold and callback is not None and data_tag == _CCT_DATA_TAG:
